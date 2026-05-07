@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ThemeRegistry } from '@/theme/ThemeRegistry';
+import '@/styles/tokens.css';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html className={`${geistSans.variable} ${geistMono.variable}`} lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
   );
 }
