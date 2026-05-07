@@ -35,25 +35,7 @@ export type ArtistsFetchResult =
       ok: false;
       error: {
         message: string;
+        devMessage?: string;
         status?: number;
       };
     };
-
-export type RawArtist = {
-  id: string | number;
-  name: string;
-  albumCount?: number | null;
-  portrait?: string | null;
-};
-
-export type RawArtistsPagination = {
-  current_page: number;
-  total_pages: number;
-  per_page: number;
-  total_items: number;
-};
-
-export type RawArtistsResponse = {
-  data: RawArtist[];
-  pagination: RawArtistsPagination;
-};
