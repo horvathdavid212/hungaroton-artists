@@ -1,4 +1,4 @@
-// TODO: if needed make it more generic and reusable for other languages if needed
+// Note: if needed make it more generic and reusable for other languages if needed
 export const ARTIST_ALPHABET = [
   'A',
   'B',

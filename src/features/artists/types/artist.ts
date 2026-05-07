@@ -42,7 +42,7 @@ export type ArtistsFetchResult =
 export type RawArtist = {
   id: string | number;
   name: string;
-  albumCount: number;
+  albumCount?: number | null;
   portrait?: string | null;
 };
 
