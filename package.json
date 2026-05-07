@@ -6,14 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "check": "biome check src",
+    "check:write": "biome check --write src",
+    "format": "biome format --write src",
+    "lint": "biome lint src"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.0.1",
+    "@mui/material-nextjs": "^9.0.1",
     "next": "16.2.5",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.14",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
