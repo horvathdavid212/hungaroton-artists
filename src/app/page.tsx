@@ -4,8 +4,6 @@ import { ArtistResults } from '@/features/artists/components/ArtistResults';
 import { LoadingState } from '@/features/artists/components/LoadingState';
 import { parseArtistSearchParams } from '@/features/artists/utils/parseArtistSearchParams';
 
-export const dynamic = 'force-dynamic';
-
 type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };

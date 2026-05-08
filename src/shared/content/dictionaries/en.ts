@@ -18,10 +18,16 @@ export const enDictionary = {
     typeFilterLabel: 'Filter by artist type',
     resetFiltersButton: 'Reset filters',
     pageLabel: 'Page',
+    allArtistTypesLabel: 'All artist types',
     activeFilterLabels: {
       search: 'Search',
       letter: 'Letter',
       type: 'Type'
+    },
+    artistTypeLabels: {
+      is_composer: 'Composers',
+      is_performer: 'Performers',
+      is_primary: 'Primary artists'
     }
   },
   artistResults: {

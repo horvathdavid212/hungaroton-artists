@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import type { ReactNode } from 'react';
+import { ArtistFilters } from '@/features/artists/components/ArtistFilters';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { dictionary } from '@/shared/content/dictionaries';
 
@@ -17,7 +18,7 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
   const activeFilters = [
     query.search ? `${texts.activeFilterLabels.search}: ${query.search}` : undefined,
     query.letter ? `${texts.activeFilterLabels.letter}: ${query.letter}` : undefined,
-    query.type ? `${texts.activeFilterLabels.type}: ${query.type}` : undefined
+    query.type ? `${texts.activeFilterLabels.type}: ${texts.artistTypeLabels[query.type]}` : undefined
   ].filter(Boolean);
 
   return (
@@ -36,6 +37,7 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
               {activeFilters.length > 0 ? ` | ${activeFilters.join(' | ')}` : ''}
             </Typography>
           </Stack>
+          <ArtistFilters query={query} />
           {children}
         </Stack>
       </Container>
