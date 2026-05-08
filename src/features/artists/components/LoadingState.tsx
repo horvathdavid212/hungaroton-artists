@@ -1,10 +1,13 @@
 import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import { dictionary } from '@/shared/content/dictionaries';
 
 export const LoadingState = () => {
+  const texts = dictionary.common;
+
   return (
-    <Paper sx={{ p: { xs: 3, md: 4 } }} variant="outlined">
+    <Paper aria-label={texts.loading} sx={{ p: { xs: 3, md: 4 } }} variant="outlined">
       <Stack spacing={2}>
         <Skeleton height={32} variant="rounded" width="40%" />
         <Skeleton height={24} variant="rounded" width="70%" />

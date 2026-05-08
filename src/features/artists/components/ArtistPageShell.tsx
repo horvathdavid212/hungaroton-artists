@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import type { ReactNode } from 'react';
 import type { ArtistQuery } from '@/features/artists/types/artist';
+import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistPageShellProps = {
   children: ReactNode;
@@ -11,10 +12,12 @@ type ArtistPageShellProps = {
 };
 
 export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
+  const texts = dictionary.artistSearch;
+
   const activeFilters = [
-    query.search ? `Search: ${query.search}` : undefined,
-    query.letter ? `Letter: ${query.letter}` : undefined,
-    query.type ? `Type: ${query.type}` : undefined
+    query.search ? `${texts.activeFilterLabels.search}: ${query.search}` : undefined,
+    query.letter ? `${texts.activeFilterLabels.letter}: ${query.letter}` : undefined,
+    query.type ? `${texts.activeFilterLabels.type}: ${query.type}` : undefined
   ].filter(Boolean);
 
   return (
@@ -23,13 +26,13 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
         <Stack spacing={4}>
           <Stack component="header" spacing={1.5}>
             <Typography component="h1" variant="h1">
-              Hungaroton artists
+              {texts.title}
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: 720 }}>
-              Browse artists from the Hungaroton catalogue with server-rendered results.
+              {texts.subtitle}
             </Typography>
             <Typography color="text.secondary" variant="body2">
-              Page {query.page}
+              {texts.pageLabel} {query.page}
               {activeFilters.length > 0 ? ` | ${activeFilters.join(' | ')}` : ''}
             </Typography>
           </Stack>
