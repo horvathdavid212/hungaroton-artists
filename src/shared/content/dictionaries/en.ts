@@ -35,6 +35,8 @@ export const enDictionary = {
     emptyDescription: 'No artists found for the current filters.',
     errorTitle: 'Something went wrong',
     errorDescription: 'Unable to load artists. Please try again.',
+    imageAlt: (name: string) => `${name} portrait`,
+    imageFallbackLabel: (name: string) => `No portrait available for ${name}`,
     // Note: pluralization will be handled better with i18n or similar libraries
     totalArtists: (count: number) => `${count} ${count === 1 ? 'artist' : 'artists'}`,
     paginationSummary: (currentPage: number, totalPages: number) => `Showing page ${currentPage} of ${totalPages}.`,

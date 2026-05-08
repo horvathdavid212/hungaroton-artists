@@ -38,11 +38,17 @@ const parseJsonSafely = async (response: Response): Promise<unknown> => {
   }
 };
 
+const normalizeImageUrl = (imageUrl: string | null | undefined) => {
+  const normalizedImageUrl = imageUrl?.trim();
+
+  return normalizedImageUrl ? normalizedImageUrl : null;
+};
+
 const normalizeArtist = (artist: RawArtist): Artist => ({
   id: artist.id,
   name: artist.name,
   albumCount: artist.albumCount ?? 0,
-  imageUrl: artist.portrait ?? null
+  imageUrl: normalizeImageUrl(artist.portrait)
 });
 
 const normalizePagination = (pagination: RawArtistsPagination): ArtistsPagination => ({
