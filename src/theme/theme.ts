@@ -1,32 +1,35 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
-  // Note: Cant use CSS variables directly in the palette object, so we use the same values as in the tokens.css for consistency
+  // Note: Can't use CSS variables directly in the palette object,
+  // so we use the same values as in tokens.css for consistency.
   palette: {
-    mode: 'light',
+    mode: 'dark',
     background: {
-      default: '#f7f4ef',
-      paper: '#fffdf8'
+      default: '#0f172a',
+      paper: '#182235'
     },
     primary: {
-      main: '#7b2334',
-      dark: '#571826',
-      contrastText: '#ffffff'
+      main: '#f59e0b',
+      dark: '#b45309',
+      contrastText: '#111827'
     },
     secondary: {
-      main: '#1f6f78'
+      main: '#22d3ee',
+      dark: '#0891b2',
+      contrastText: '#082f49'
     },
     error: {
-      main: '#b42318'
+      main: '#f87171'
     },
     text: {
-      primary: '#1f2933',
-      secondary: '#5f6b7a'
+      primary: '#f8fafc',
+      secondary: '#cbd5e1'
     },
-    divider: '#d8d0c3'
+    divider: '#334155'
   },
   shape: {
-    borderRadius: 8
+    borderRadius: 10
   },
   typography: {
     fontFamily: 'var(--font-geist-sans), Arial, Helvetica, sans-serif',
@@ -64,7 +67,16 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 'var(--radius-md)',
-          boxShadow: 'var(--shadow-sm)'
+          boxShadow: 'var(--shadow-sm)',
+          border: '1px solid var(--color-border)',
+          backgroundImage: 'none'
+        }
+      }
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none'
         }
       }
     }
