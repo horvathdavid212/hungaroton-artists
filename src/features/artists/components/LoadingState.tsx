@@ -29,10 +29,6 @@ export const LoadingState = () => {
       variant="outlined"
     >
       <Stack spacing={2.5}>
-        <Stack spacing={1}>
-          <Skeleton height={30} variant="rounded" width="42%" />
-          <Skeleton height={18} variant="rounded" width="60%" />
-        </Stack>
         <Box
           sx={{
             display: 'grid',
