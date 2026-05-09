@@ -2,9 +2,9 @@
 
 import Button from '@mui/material/Button';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForReset } from '@/features/artists/utils/updateArtistSearchParams';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ResetFiltersButtonProps = {
   query: ArtistQuery;
@@ -13,7 +13,7 @@ type ResetFiltersButtonProps = {
 export const ResetFiltersButton = ({ query }: ResetFiltersButtonProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const texts = dictionary.artistSearch;
+  const t = useTranslations('artistSearch');
   const hasActiveState = Boolean(query.search || query.letter || query.type || query.page > 1);
 
   const handleReset = () => {
@@ -22,7 +22,7 @@ export const ResetFiltersButton = ({ query }: ResetFiltersButtonProps) => {
 
   return (
     <Button disabled={!hasActiveState} onClick={handleReset} sx={{ flexShrink: 0 }} type="button" variant="text">
-      {texts.resetFiltersButton}
+      {t('resetFiltersButton')}
     </Button>
   );
 };

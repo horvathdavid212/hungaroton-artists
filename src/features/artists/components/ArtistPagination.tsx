@@ -4,9 +4,9 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import type { ArtistsPagination } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForPagination } from '@/features/artists/utils/updateArtistSearchParams';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistPaginationProps = {
   pagination: ArtistsPagination;
@@ -16,7 +16,7 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const texts = dictionary.pagination;
+  const t = useTranslations('pagination');
 
   if (pagination.totalPages <= 1) {
     return null;
@@ -29,21 +29,21 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
   return (
     <Stack spacing={1.5} sx={{ alignItems: 'center', pt: 1 }}>
       <Typography color="text.secondary" variant="body2">
-        {texts.page} {pagination.currentPage}
+        {t('page')} {pagination.currentPage}
       </Typography>
       <Pagination
         color="primary"
         count={pagination.totalPages}
         getItemAriaLabel={(type, page) => {
           if (type === 'previous') {
-            return texts.previous;
+            return t('previous');
           }
 
           if (type === 'next') {
-            return texts.next;
+            return t('next');
           }
 
-          return `${texts.page} ${page}`;
+          return `${t('page')} ${page}`;
         }}
         onChange={handlePageChange}
         page={pagination.currentPage}

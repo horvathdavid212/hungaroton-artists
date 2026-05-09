@@ -3,8 +3,8 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistImageProps = {
   imageUrl: string | null;
@@ -17,7 +17,7 @@ const getFallbackLetter = (name: string) => {
 
 export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
   const [hasImageError, setHasImageError] = useState(false);
-  const texts = dictionary.artistResults;
+  const t = useTranslations('artistResults');
   const shouldShowFallback = !imageUrl || hasImageError;
 
   return (
@@ -36,7 +36,7 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
     >
       {shouldShowFallback ? (
         <Box
-          aria-label={texts.imageFallbackLabel(name)}
+          aria-label={t('imageFallbackLabel', { name })}
           role="img"
           sx={{
             alignItems: 'center',
@@ -58,7 +58,7 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
         </Box>
       ) : (
         <Image
-          alt={texts.imageAlt(name)}
+          alt={t('imageAlt', { name })}
           fill
           onError={() => setHasImageError(true)}
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"

@@ -1,19 +1,19 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { getTranslations } from 'next-intl/server';
 import { fetchArtists } from '@/features/artists/api/fetchArtists';
 import { ArtistGrid } from '@/features/artists/components/ArtistGrid';
 import { ArtistPagination } from '@/features/artists/components/ArtistPagination';
 import { EmptyState } from '@/features/artists/components/EmptyState';
 import { ErrorState } from '@/features/artists/components/ErrorState';
 import type { ArtistQuery } from '@/features/artists/types/artist';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistResultsProps = {
   query: ArtistQuery;
 };
 
 export const ArtistResults = async ({ query }: ArtistResultsProps) => {
-  const texts = dictionary.artistResults;
+  const t = await getTranslations('artistResults');
   const result = await fetchArtists(query);
 
   if (!result.ok) {
@@ -35,10 +35,13 @@ export const ArtistResults = async ({ query }: ArtistResultsProps) => {
         }}
       >
         <Typography component="h2" variant="h2">
-          {texts.totalArtists(result.data.pagination.totalItems)}
+          {t('totalArtists', { count: result.data.pagination.totalItems })}
         </Typography>
         <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'right' } }} variant="body2">
-          {texts.paginationSummary(result.data.pagination.currentPage, result.data.pagination.totalPages)}
+          {t('paginationSummary', {
+            currentPage: result.data.pagination.currentPage,
+            totalPages: result.data.pagination.totalPages
+          })}
         </Typography>
       </Stack>
       <ArtistGrid artists={result.data.artists} />

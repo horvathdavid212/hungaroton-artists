@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "title": "Hungaroton Artist List",
+    "description": "Browse artists from the Hungaroton catalogue."
+  },
+  "common": {
+    "loading": "Loading...",
+    "retry": "Try again"
+  },
+  "artistSearch": {
+    "title": "Hungaroton artists",
+    "subtitle": "Browse artists from the Hungaroton catalogue.",
+    "searchLabel": "Search artist",
+    "searchPlaceholder": "Type an artist name...",
+    "searchButton": "Search",
+    "clearButton": "Clear",
+    "letterFilterLabel": "Filter by letter",
+    "typeFilterLabel": "Filter by artist type",
+    "resetFiltersButton": "Reset filters",
+    "pageLabel": "Page",
+    "allArtistTypesLabel": "All artist types",
+    "activeFilterLabels": {
+      "search": "Search",
+      "letter": "Letter",
+      "type": "Type"
+    },
+    "artistTypeLabels": {
+      "is_composer": "Composers",
+      "is_performer": "Performers",
+      "is_primary": "Primary artists"
+    }
+  },
+  "artistResults": {
+    "emptyTitle": "No artists found",
+    "emptyDescription": "No artists found for the current filters.",
+    "errorTitle": "Something went wrong",
+    "errorDescription": "Unable to load artists. Please try again.",
+    "imageAlt": "{name} portrait",
+    "imageFallbackLabel": "No portrait available for {name}",
+    "totalArtists": "{count, plural, one {# artist} other {# artists}}",
+    "paginationSummary": "Showing page {currentPage} of {totalPages}.",
+    "albumCount": "{count, plural, one {# album} other {# albums}}"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "hu": "Hungarian"
+  }
+}

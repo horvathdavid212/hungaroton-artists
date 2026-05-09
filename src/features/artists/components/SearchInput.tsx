@@ -6,10 +6,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { type ComponentProps, useState } from 'react';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForClearSearch, updateArtistSearchParamsForSearchSubmit } from '@/features/artists/utils/updateArtistSearchParams';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type SearchInputProps = {
   query: ArtistQuery;
@@ -19,7 +19,7 @@ export const SearchInput = ({ query }: SearchInputProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const texts = dictionary.artistSearch;
+  const t = useTranslations('artistSearch');
   const [searchText, setSearchText] = useState(query.search ?? '');
 
   const replaceSearchParams = (nextSearchParams: string) => {
@@ -49,9 +49,9 @@ export const SearchInput = ({ query }: SearchInputProps) => {
     >
       <TextField
         fullWidth
-        label={texts.searchLabel}
+        label={t('searchLabel')}
         onChange={(event) => setSearchText(event.target.value)}
-        placeholder={texts.searchPlaceholder}
+        placeholder={t('searchPlaceholder')}
         size="small"
         slotProps={{
           input: {
@@ -59,7 +59,7 @@ export const SearchInput = ({ query }: SearchInputProps) => {
               searchText || query.search ? (
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label={texts.clearButton}
+                    aria-label={t('clearButton')}
                     edge="end"
                     onClick={handleClear}
                     size="small"
@@ -78,7 +78,7 @@ export const SearchInput = ({ query }: SearchInputProps) => {
         value={searchText}
       />
       <Button type="submit" variant="contained">
-        {texts.searchButton}
+        {t('searchButton')}
       </Button>
     </Stack>
   );

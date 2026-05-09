@@ -2,16 +2,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useTranslations } from 'next-intl';
 import { ArtistImage } from '@/features/artists/components/ArtistImage';
 import type { Artist } from '@/features/artists/types/artist';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistCardProps = {
   artist: Artist;
 };
 
 export const ArtistCard = ({ artist }: ArtistCardProps) => {
-  const texts = dictionary.artistResults;
+  const t = useTranslations('artistResults');
 
   return (
     <Card
@@ -43,7 +43,7 @@ export const ArtistCard = ({ artist }: ArtistCardProps) => {
             {artist.name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
-            {texts.albumCount(artist.albumCount)}
+            {t('albumCount', { count: artist.albumCount })}
           </Typography>
         </Stack>
       </CardContent>

@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "title": "Hungaroton előadólista",
+    "description": "Böngésszen a Hungaroton katalógus előadói között."
+  },
+  "common": {
+    "loading": "Betöltés...",
+    "retry": "Újra próbálkozás"
+  },
+  "artistSearch": {
+    "title": "Hungaroton előadók",
+    "subtitle": "Böngésszen a Hungaroton katalógus előadói között.",
+    "searchLabel": "Előadó keresése",
+    "searchPlaceholder": "Írjon be egy előadónevet...",
+    "searchButton": "Keresés",
+    "clearButton": "Törlés",
+    "letterFilterLabel": "Betű szerinti szűrés",
+    "typeFilterLabel": "Előadótípus szerinti szűrés",
+    "resetFiltersButton": "Szűrők törlése",
+    "pageLabel": "Oldal",
+    "allArtistTypesLabel": "Minden előadótípus",
+    "activeFilterLabels": {
+      "search": "Keresés",
+      "letter": "Betű",
+      "type": "Típus"
+    },
+    "artistTypeLabels": {
+      "is_composer": "Zeneszerzők",
+      "is_performer": "Előadók",
+      "is_primary": "Elsődleges előadók"
+    }
+  },
+  "artistResults": {
+    "emptyTitle": "Nem található előadó",
+    "emptyDescription": "A jelenlegi szűrőkkel nem található előadó.",
+    "errorTitle": "Hiba történt",
+    "errorDescription": "Nem sikerült betölteni az előadókat. Próbálja újra.",
+    "imageAlt": "{name} portréja",
+    "imageFallbackLabel": "{name} portréja nem érhető el",
+    "totalArtists": "{count, plural, one {# előadó} other {# előadó}}",
+    "paginationSummary": "{currentPage}. oldal / {totalPages} oldal.",
+    "albumCount": "{count, plural, one {# album} other {# album}}"
+  },
+  "pagination": {
+    "previous": "Előző",
+    "next": "Következő",
+    "page": "Oldal"
+  },
+  "languageSwitcher": {
+    "label": "Nyelv",
+    "en": "English",
+    "hu": "Magyar"
+  }
+}

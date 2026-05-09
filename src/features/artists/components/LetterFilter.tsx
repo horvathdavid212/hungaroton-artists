@@ -5,10 +5,10 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { ARTIST_ALPHABET } from '@/features/artists/constants/alphabet';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForLetter } from '@/features/artists/utils/updateArtistSearchParams';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type LetterFilterProps = {
   query: ArtistQuery;
@@ -18,7 +18,7 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const texts = dictionary.artistSearch;
+  const t = useTranslations('artistSearch');
 
   const handleLetterChange = (_event: React.MouseEvent<HTMLElement>, nextLetter: string | null) => {
     router.replace(`${pathname}?${updateArtistSearchParamsForLetter(searchParams, nextLetter ?? '')}`);
@@ -27,10 +27,10 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
   return (
     <Box>
       <Typography component="h2" gutterBottom sx={{ fontWeight: 700 }} variant="body2">
-        {texts.letterFilterLabel}
+        {t('letterFilterLabel')}
       </Typography>
       <ToggleButtonGroup
-        aria-label={texts.letterFilterLabel}
+        aria-label={t('letterFilterLabel')}
         exclusive
         onChange={handleLetterChange}
         size="small"
@@ -42,7 +42,7 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
       >
         {ARTIST_ALPHABET.map((letter) => (
           <ToggleButton
-            aria-label={`${texts.letterFilterLabel}: ${letter}`}
+            aria-label={`${t('letterFilterLabel')}: ${letter}`}
             key={letter}
             sx={{
               border: 1,

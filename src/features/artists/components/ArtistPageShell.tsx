@@ -2,10 +2,11 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { ArtistFilters } from '@/features/artists/components/ArtistFilters';
+import { LanguageSwitcher } from '@/features/artists/components/LanguageSwitcher';
 import type { ArtistQuery } from '@/features/artists/types/artist';
-import { dictionary } from '@/shared/content/dictionaries';
 
 type ArtistPageShellProps = {
   children: ReactNode;
@@ -13,7 +14,7 @@ type ArtistPageShellProps = {
 };
 
 export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
-  const texts = dictionary.artistSearch;
+  const t = useTranslations('artistSearch');
 
   return (
     <Box
@@ -26,13 +27,27 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
     >
       <Container maxWidth="lg">
         <Stack spacing={{ xs: 3, md: 4 }}>
-          <Stack component="header" spacing={1.5} sx={{ borderLeft: 4, borderColor: 'primary.main', pl: { xs: 2, md: 3 } }}>
-            <Typography component="h1" variant="h1">
-              {texts.title}
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
-              {texts.subtitle}
-            </Typography>
+          <Stack
+            component="header"
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{
+              alignItems: { xs: 'stretch', sm: 'flex-start' },
+              borderLeft: 4,
+              borderColor: 'primary.main',
+              justifyContent: 'space-between',
+              pl: { xs: 2, md: 3 }
+            }}
+          >
+            <Stack spacing={1.5}>
+              <Typography component="h1" variant="h1">
+                {t('title')}
+              </Typography>
+              <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
+                {t('subtitle')}
+              </Typography>
+            </Stack>
+            <LanguageSwitcher />
           </Stack>
           <ArtistFilters query={query} />
           {children}

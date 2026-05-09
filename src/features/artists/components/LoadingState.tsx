@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-import { dictionary } from '@/shared/content/dictionaries';
+import { useTranslations } from 'next-intl';
 
 const LOADING_CARD_KEYS = [
   'loading-artist-card-1',
@@ -16,11 +16,11 @@ const LOADING_CARD_KEYS = [
 ] as const;
 
 export const LoadingState = () => {
-  const texts = dictionary.common;
+  const t = useTranslations('common');
 
   return (
     <Paper
-      aria-label={texts.loading}
+      aria-label={t('loading')}
       sx={{
         borderRadius: 'var(--radius-lg)',
         p: { xs: 2, md: 3 }

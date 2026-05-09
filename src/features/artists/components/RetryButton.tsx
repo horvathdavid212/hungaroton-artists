@@ -2,15 +2,15 @@
 
 import Button from '@mui/material/Button';
 import { useRouter } from 'next/navigation';
-import { dictionary } from '@/shared/content/dictionaries';
+import { useTranslations } from 'next-intl';
 
 export const RetryButton = () => {
   const router = useRouter();
-  const texts = dictionary.common;
+  const t = useTranslations('common');
 
   return (
     <Button onClick={() => router.refresh()} type="button" variant="contained">
-      {texts.retry}
+      {t('retry')}
     </Button>
   );
 };
