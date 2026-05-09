@@ -37,7 +37,7 @@ const appTokens = {
       lg: 'repeat(4, minmax(0, 1fr))'
     },
     filterControls: {
-      xs: '1fr',
+      xs: 'repeat(2, minmax(0, 1fr))',
       sm: 'minmax(0, 1fr) auto',
       md: 'minmax(360px, 1fr) 240px auto'
     },

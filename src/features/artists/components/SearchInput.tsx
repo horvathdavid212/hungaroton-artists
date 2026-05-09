@@ -39,12 +39,16 @@ export const SearchInput = ({ query }: SearchInputProps) => {
   return (
     <Stack
       component="form"
-      direction={{ xs: 'column', sm: 'row' }}
+      direction="row"
       onSubmit={handleSubmit}
-      spacing={1.5}
+      spacing={1}
       sx={{
         flex: 1,
-        minWidth: { xs: '100%', md: 360 }
+        minWidth: { xs: '100%', md: 360 },
+        '& .MuiTextField-root': {
+          flex: 1,
+          minWidth: 0
+        }
       }}
     >
       <TextField
@@ -77,7 +81,7 @@ export const SearchInput = ({ query }: SearchInputProps) => {
         }}
         value={searchText}
       />
-      <Button type="submit" variant="contained">
+      <Button sx={{ flexShrink: 0, px: { xs: 2, sm: 2.5 } }} type="submit" variant="contained">
         {t('searchButton')}
       </Button>
     </Stack>

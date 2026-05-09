@@ -19,6 +19,7 @@
     "showFiltersButton": "Szűrők megnyitása",
     "hideFiltersButton": "Szűrők bezárása",
     "letterFilterLabel": "Betű szerinti szűrés",
+    "allLettersLabel": "Minden betű",
     "typeFilterLabel": "Előadótípus szerinti szűrés",
     "resetFiltersButton": "Szűrők törlése",
     "pageLabel": "Oldal",

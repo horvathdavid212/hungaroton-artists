@@ -19,6 +19,7 @@
     "showFiltersButton": "Show filters",
     "hideFiltersButton": "Hide filters",
     "letterFilterLabel": "Filter by letter",
+    "allLettersLabel": "All letters",
     "typeFilterLabel": "Filter by artist type",
     "resetFiltersButton": "Reset filters",
     "pageLabel": "Page",

@@ -131,7 +131,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
           justifyContent: 'center',
           ml: isStuck ? 'calc(50% - 50vw)' : 0,
           mr: isStuck ? 'calc(50% - 50vw)' : 0,
-          p: { xs: 1, md: 2 },
+          p: { xs: 1.5, md: 2 },
           position: 'relative',
           transition: theme.app.transition.stickyPanel,
           width: isStuck ? '100vw' : '100%'
@@ -179,25 +179,39 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
               <Box
                 sx={{
                   display: 'grid',
-                  gap: 2,
+                  gap: { xs: 1.5, md: 2 },
                   gridTemplateColumns: theme.app.gridTemplateColumns.filterControls,
-                  alignItems: 'center',
+                  alignItems: 'start',
                   mx: isStuck ? 'auto' : 0,
                   maxWidth: isStuck ? 'lg' : 'none',
-                  px: isStuck ? { xs: 2, sm: 3 } : 0,
+                  px: isStuck ? { xs: 1, sm: 3 } : 0,
                   transition: 'padding 180ms ease'
                 }}
               >
-                <Box sx={{ gridColumn: { xs: '1', sm: '1 / -1', md: 'auto' }, minWidth: 0 }}>
+                <Box sx={{ gridColumn: { xs: '1 / -1', sm: '1 / -1', md: 'auto' }, minWidth: 0 }}>
                   <SearchInput key={searchInputKey} query={query} />
                 </Box>
-                <ArtistTypeFilter query={query} />
-                <Box sx={{ justifySelf: { xs: 'stretch', sm: 'end' } }}>
+                <Box sx={{ gridColumn: { xs: '1 / -1', sm: 'auto' }, minWidth: 0 }}>
+                  <ArtistTypeFilter query={query} />
+                </Box>
+                <Box sx={{ display: { xs: 'block', sm: 'none' }, gridColumn: { xs: '1 / -1', sm: 'auto' }, minWidth: 0 }}>
+                  <LetterFilter query={query} />
+                </Box>
+                <Box
+                  sx={{
+                    gridColumn: { xs: '1 / -1', sm: 'auto' },
+                    justifySelf: { xs: 'stretch', sm: 'end' },
+                    '& > *': {
+                      width: { xs: '100%', sm: 'auto' }
+                    }
+                  }}
+                >
                   <ResetFiltersButton query={query} />
                 </Box>
               </Box>
               <Box
                 sx={{
+                  display: { xs: 'none', sm: 'block' },
                   mx: isStuck ? 'auto' : 0,
                   maxWidth: isStuck ? 'lg' : 'none',
                   px: isStuck ? { xs: 2, sm: 3 } : 0,
@@ -227,24 +241,20 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                   aria-expanded={isFilterContentVisible}
                   aria-label={toggleButtonLabel}
                   onClick={() => setIsExpanded((currentValue) => !currentValue)}
-                  size="small"
                   sx={{
-                    bgcolor: theme.palette.background.paper,
-                    border: 1,
-                    borderColor: theme.palette.divider,
                     color: theme.palette.primary.main,
                     height: 40,
                     width: 40,
                     pointerEvents: 'auto',
-                    '&:hover': {
-                      bgcolor: theme.palette.background.paper,
-                      borderColor: theme.palette.primary.main,
-                      color: theme.palette.primary.main
-                    }
+                    // '&:hover': {
+                    //   bgcolor: theme.palette.background.paper,
+                    //   borderColor: theme.palette.primary.main,
+                    //   color: theme.palette.primary.main
+                    // }
                   }}
                   type="button"
                 >
-                  {isExpanded ? <KeyboardArrowUpIcon fontSize="small" /> : <KeyboardArrowDownIcon fontSize="small" />}
+                  {isExpanded ? <KeyboardArrowUpIcon fontSize="medium" /> : <KeyboardArrowDownIcon fontSize="medium" />}
                 </IconButton>
               </Tooltip>
             </Box>
