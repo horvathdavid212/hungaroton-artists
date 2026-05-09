@@ -5,7 +5,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 import { ARTIST_ALPHABET, type ArtistAlphabetLetter } from '@/features/artists/constants/alphabet';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForLetter } from '@/features/artists/utils/updateArtistSearchParams';
@@ -28,14 +28,14 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
   };
 
   return (
-    <Box component="section" aria-labelledby="letter-filter-title">
+    <Box aria-labelledby="letter-filter-title" component="section">
       <Typography component="h2" gutterBottom id="letter-filter-title" sx={{ fontWeight: 700 }} variant="body2">
         {t('letterFilterLabel')}
       </Typography>
 
       <Box
-        role="group"
         aria-labelledby="letter-filter-title"
+        role="group"
         sx={{
           display: 'grid',
           gap: 0.3,
