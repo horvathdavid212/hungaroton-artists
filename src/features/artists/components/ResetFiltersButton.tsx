@@ -21,7 +21,7 @@ export const ResetFiltersButton = ({ query }: ResetFiltersButtonProps) => {
   };
 
   return (
-    <Button disabled={!hasActiveState} onClick={handleReset} type="button" variant="text">
+    <Button disabled={!hasActiveState} onClick={handleReset} sx={{ flexShrink: 0 }} type="button" variant="text">
       {texts.resetFiltersButton}
     </Button>
   );

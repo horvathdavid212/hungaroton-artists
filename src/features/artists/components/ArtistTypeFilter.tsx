@@ -25,9 +25,23 @@ export const ArtistTypeFilter = ({ query }: ArtistTypeFilterProps) => {
   };
 
   return (
-    <FormControl size="small" sx={{ minWidth: { xs: '100%', sm: 220 } }}>
+    <FormControl
+      size="small"
+      sx={{
+        flexShrink: 0,
+        minWidth: { xs: '100%', sm: 220 }
+      }}
+    >
       <InputLabel id="artist-type-filter-label">{texts.typeFilterLabel}</InputLabel>
-      <Select label={texts.typeFilterLabel} labelId="artist-type-filter-label" onChange={handleTypeChange} value={query.type ?? ''}>
+      <Select
+        label={texts.typeFilterLabel}
+        labelId="artist-type-filter-label"
+        MenuProps={{
+          disableScrollLock: true
+        }}
+        onChange={handleTypeChange}
+        value={query.type ?? ''}
+      >
         <MenuItem value="">{texts.allArtistTypesLabel}</MenuItem>
         {ARTIST_TYPE_VALUES.map((artistType) => (
           <MenuItem key={artistType} value={artistType}>

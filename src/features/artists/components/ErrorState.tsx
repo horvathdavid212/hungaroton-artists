@@ -8,8 +8,8 @@ export const ErrorState = () => {
   const texts = dictionary.artistResults;
 
   return (
-    <Alert severity="error" variant="outlined">
-      <Stack spacing={2}>
+    <Alert severity="error" sx={{ borderRadius: 'var(--radius-lg)', p: { xs: 2, md: 2.5 } }} variant="outlined">
+      <Stack spacing={2} sx={{ maxWidth: 620 }}>
         <Stack spacing={0.75}>
           <Typography component="h2" variant="h2">
             {texts.errorTitle}

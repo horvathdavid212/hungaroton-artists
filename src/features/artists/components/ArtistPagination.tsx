@@ -27,7 +27,7 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
   };
 
   return (
-    <Stack spacing={1.5} sx={{ alignItems: 'center' }}>
+    <Stack spacing={1.5} sx={{ alignItems: 'center', pt: 1 }}>
       <Typography color="text.secondary" variant="body2">
         {texts.page} {pagination.currentPage}
       </Typography>
@@ -48,7 +48,14 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
         onChange={handlePageChange}
         page={pagination.currentPage}
         shape="rounded"
-        siblingCount={1}
+        siblingCount={0}
+        sx={{
+          '& .MuiPagination-ul': {
+            flexWrap: 'wrap',
+            gap: 0.5,
+            justifyContent: 'center'
+          }
+        }}
       />
     </Stack>
   );

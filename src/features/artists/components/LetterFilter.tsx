@@ -26,7 +26,7 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
 
   return (
     <Box>
-      <Typography component="h2" gutterBottom variant="body2">
+      <Typography component="h2" gutterBottom sx={{ fontWeight: 700 }} variant="body2">
         {texts.letterFilterLabel}
       </Typography>
       <ToggleButtonGroup
@@ -34,14 +34,22 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
         exclusive
         onChange={handleLetterChange}
         size="small"
-        sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap'
+        }}
         value={query.letter ?? null}
       >
         {ARTIST_ALPHABET.map((letter) => (
           <ToggleButton
             aria-label={`${texts.letterFilterLabel}: ${letter}`}
             key={letter}
-            sx={{ border: 1, borderColor: 'divider', borderRadius: 1, minWidth: 40 }}
+            sx={{
+              border: 1,
+              borderColor: 'divider',
+              flex: { xs: '1 0 40px', sm: '0 0 40px' },
+              minWidth: 40
+            }}
             value={letter}
           >
             {letter}

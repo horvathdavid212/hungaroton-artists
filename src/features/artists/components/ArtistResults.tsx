@@ -25,12 +25,21 @@ export const ArtistResults = async ({ query }: ArtistResultsProps) => {
   }
 
   return (
-    <Stack component="section" spacing={3}>
-      <Stack spacing={0.75}>
+    <Stack component="section" spacing={{ xs: 2.5, md: 3 }}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={1}
+        sx={{
+          alignItems: { xs: 'flex-start', sm: 'flex-end' },
+          justifyContent: 'space-between'
+        }}
+      >
         <Typography component="h2" variant="h2">
           {texts.totalArtists(result.data.pagination.totalItems)}
         </Typography>
-        <Typography color="text.secondary">{texts.paginationSummary(result.data.pagination.currentPage, result.data.pagination.totalPages)}</Typography>
+        <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'right' } }} variant="body2">
+          {texts.paginationSummary(result.data.pagination.currentPage, result.data.pagination.totalPages)}
+        </Typography>
       </Stack>
       <ArtistGrid artists={result.data.artists} />
       <ArtistPagination pagination={result.data.pagination} />

@@ -6,9 +6,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type SubmitEvent, useState } from 'react';
+import { type ComponentProps, useState } from 'react';
 import type { ArtistQuery } from '@/features/artists/types/artist';
-import { updateArtistSearchParamsForSearchSubmit } from '@/features/artists/utils/updateArtistSearchParams';
+import { updateArtistSearchParamsForClearSearch, updateArtistSearchParamsForSearchSubmit } from '@/features/artists/utils/updateArtistSearchParams';
 import { dictionary } from '@/shared/content/dictionaries';
 
 type SearchInputProps = {
@@ -26,18 +26,27 @@ export const SearchInput = ({ query }: SearchInputProps) => {
     router.replace(`${pathname}?${nextSearchParams}`);
   };
 
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit: NonNullable<ComponentProps<'form'>['onSubmit']> = (event) => {
     event.preventDefault();
     replaceSearchParams(updateArtistSearchParamsForSearchSubmit(searchParams, searchText));
   };
 
   const handleClear = () => {
     setSearchText('');
-    // replaceSearchParams(updateArtistSearchParamsForClearSearch(searchParams));
+    replaceSearchParams(updateArtistSearchParamsForClearSearch(searchParams));
   };
 
   return (
-    <Stack component="form" direction={{ xs: 'column', sm: 'row' }} onSubmit={handleSubmit} spacing={1.5} sx={{ flex: 1, minWidth: { xs: '100%', md: 360 } }}>
+    <Stack
+      component="form"
+      direction={{ xs: 'column', sm: 'row' }}
+      onSubmit={handleSubmit}
+      spacing={1.5}
+      sx={{
+        flex: 1,
+        minWidth: { xs: '100%', md: 360 }
+      }}
+    >
       <TextField
         fullWidth
         label={texts.searchLabel}
@@ -49,7 +58,17 @@ export const SearchInput = ({ query }: SearchInputProps) => {
             endAdornment:
               searchText || query.search ? (
                 <InputAdornment position="end">
-                  <IconButton aria-label={texts.clearButton} edge="end" onClick={handleClear} size="small" sx={{ width: '30px', height: '30px' }} type="button">
+                  <IconButton
+                    aria-label={texts.clearButton}
+                    edge="end"
+                    onClick={handleClear}
+                    size="small"
+                    sx={{
+                      height: 30,
+                      width: 30
+                    }}
+                    type="button"
+                  >
                     x
                   </IconButton>
                 </InputAdornment>

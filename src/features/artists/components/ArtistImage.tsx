@@ -25,7 +25,7 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
       sx={{
         alignItems: 'center',
         aspectRatio: '4 / 3',
-        bgcolor: 'background.default',
+        bgcolor: 'var(--color-surface-muted)',
         borderBottom: 1,
         borderColor: 'divider',
         display: 'flex',
@@ -40,16 +40,19 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
           role="img"
           sx={{
             alignItems: 'center',
-            bgcolor: 'secondary.dark',
+            bgcolor: 'background.paper',
+            border: 1,
+            borderColor: 'secondary.main',
             borderRadius: '50%',
-            color: 'secondary.contrastText',
+            boxShadow: 'var(--shadow-sm)',
+            color: 'secondary.main',
             display: 'flex',
-            height: 72,
+            height: { xs: 64, md: 72 },
             justifyContent: 'center',
-            width: 72
+            width: { xs: 64, md: 72 }
           }}
         >
-          <Typography component="span" variant="h2">
+          <Typography component="span" sx={{ fontWeight: 700 }} variant="h2">
             {getFallbackLetter(name)}
           </Typography>
         </Box>
@@ -58,7 +61,7 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
           alt={texts.imageAlt(name)}
           fill
           onError={() => setHasImageError(true)}
-          sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+          sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1200px) 33vw, 25vw"
           src={imageUrl}
           style={{ objectFit: 'cover' }}
         />

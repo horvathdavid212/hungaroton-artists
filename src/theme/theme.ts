@@ -6,27 +6,27 @@ export const theme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#0f172a',
-      paper: '#182235'
+      default: '#101512',
+      paper: '#18221d'
     },
     primary: {
-      main: '#f59e0b',
-      dark: '#b45309',
-      contrastText: '#111827'
+      main: '#e8b84a',
+      dark: '#b88a1f',
+      contrastText: '#11140f'
     },
     secondary: {
-      main: '#22d3ee',
-      dark: '#0891b2',
-      contrastText: '#082f49'
+      main: '#66d0c5',
+      dark: '#2a9f94',
+      contrastText: '#071916'
     },
     error: {
-      main: '#f87171'
+      main: '#f07b7b'
     },
     text: {
-      primary: '#f8fafc',
-      secondary: '#cbd5e1'
+      primary: '#f4f7f1',
+      secondary: '#c8d2c6'
     },
-    divider: '#334155'
+    divider: '#36443c'
   },
   shape: {
     borderRadius: 10
@@ -36,12 +36,14 @@ export const theme = createTheme({
     h1: {
       fontSize: 'var(--font-size-2xl)',
       fontWeight: 700,
-      letterSpacing: 0
+      letterSpacing: 0,
+      lineHeight: 1.15
     },
     h2: {
       fontSize: 'var(--font-size-xl)',
       fontWeight: 700,
-      letterSpacing: 0
+      letterSpacing: 0,
+      lineHeight: 1.2
     },
     body1: {
       fontSize: 'var(--font-size-md)'
@@ -59,7 +61,24 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 'var(--radius-md)'
+          borderRadius: 'var(--radius-md)',
+          minHeight: 40
+        }
+      }
+    },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 'var(--radius-sm)',
+          color: 'var(--color-text-muted)',
+          minHeight: 40,
+          '&.Mui-selected': {
+            backgroundColor: 'var(--color-primary)',
+            color: 'var(--color-primary-contrast)'
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'var(--color-primary-dark)'
+          }
         }
       }
     },
@@ -77,6 +96,22 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none'
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'var(--color-surface-muted)',
+          borderRadius: 'var(--radius-md)'
+        }
+      }
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        ':focus-visible': {
+          outline: '2px solid var(--color-focus)',
+          outlineOffset: 2
         }
       }
     }

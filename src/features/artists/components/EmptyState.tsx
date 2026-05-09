@@ -13,8 +13,14 @@ export const EmptyState = ({ query }: EmptyStateProps) => {
   const texts = dictionary.artistResults;
 
   return (
-    <Paper sx={{ p: { xs: 3, md: 4 } }} variant="outlined">
-      <Stack spacing={2}>
+    <Paper
+      sx={{
+        borderRadius: 'var(--radius-lg)',
+        p: { xs: 3, md: 4 }
+      }}
+      variant="outlined"
+    >
+      <Stack spacing={2} sx={{ maxWidth: 560 }}>
         <Stack spacing={0.75}>
           <Typography component="h2" variant="h2">
             {texts.emptyTitle}

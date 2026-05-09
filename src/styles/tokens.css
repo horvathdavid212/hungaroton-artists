@@ -1,21 +1,22 @@
 :root {
-  --color-background: #0f172a;
-  --color-surface: #182235;
-  --color-surface-muted: #243047;
+  --color-background: #101512;
+  --color-surface: #18221d;
+  --color-surface-muted: #223028;
 
-  --color-text: #f8fafc;
-  --color-text-muted: #cbd5e1;
-  --color-border: #334155;
+  --color-text: #f4f7f1;
+  --color-text-muted: #c8d2c6;
+  --color-border: #36443c;
 
-  --color-primary: #f59e0b;
-  --color-primary-dark: #b45309;
-  --color-primary-contrast: #111827;
+  --color-primary: #e8b84a;
+  --color-primary-dark: #b88a1f;
+  --color-primary-contrast: #11140f;
 
-  --color-accent: #22d3ee;
-  --color-accent-dark: #0891b2;
-  --color-accent-contrast: #082f49;
+  --color-accent: #66d0c5;
+  --color-accent-dark: #2a9f94;
+  --color-accent-contrast: #071916;
 
-  --color-error: #f87171;
+  --color-error: #f07b7b;
+  --color-focus: #f2cf7b;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -30,8 +31,8 @@
   --radius-md: 0.625rem;
   --radius-lg: 0.875rem;
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 24%);
-  --shadow-md: 0 16px 40px rgb(0 0 0 / 32%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 22%);
+  --shadow-md: 0 18px 48px rgb(0 0 0 / 30%);
 
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;

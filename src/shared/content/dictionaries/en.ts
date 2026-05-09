@@ -9,7 +9,7 @@ export const enDictionary = {
   },
   artistSearch: {
     title: 'Hungaroton artists',
-    subtitle: 'Browse artists from the Hungaroton catalogue with server-rendered results.',
+    subtitle: 'Browse artists from the Hungaroton catalogue.',
     searchLabel: 'Search artist',
     searchPlaceholder: 'Type an artist name...',
     searchButton: 'Search',

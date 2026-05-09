@@ -15,26 +15,23 @@ type ArtistPageShellProps = {
 export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
   const texts = dictionary.artistSearch;
 
-  const activeFilters = [
-    query.search ? `${texts.activeFilterLabels.search}: ${query.search}` : undefined,
-    query.letter ? `${texts.activeFilterLabels.letter}: ${query.letter}` : undefined,
-    query.type ? `${texts.activeFilterLabels.type}: ${texts.artistTypeLabels[query.type]}` : undefined
-  ].filter(Boolean);
-
   return (
-    <Box component="main" sx={{ bgcolor: 'background.default', flex: 1, py: { xs: 4, md: 7 } }}>
+    <Box
+      component="main"
+      sx={{
+        bgcolor: 'background.default',
+        flex: 1,
+        py: { xs: 3, md: 6 }
+      }}
+    >
       <Container maxWidth="lg">
-        <Stack spacing={4}>
-          <Stack component="header" spacing={1.5}>
+        <Stack spacing={{ xs: 3, md: 4 }}>
+          <Stack component="header" spacing={1.5} sx={{ borderLeft: 4, borderColor: 'primary.main', pl: { xs: 2, md: 3 } }}>
             <Typography component="h1" variant="h1">
               {texts.title}
             </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: 720 }}>
+            <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
               {texts.subtitle}
-            </Typography>
-            <Typography color="text.secondary" variant="body2">
-              {texts.pageLabel} {query.page}
-              {activeFilters.length > 0 ? ` | ${activeFilters.join(' | ')}` : ''}
             </Typography>
           </Stack>
           <ArtistFilters query={query} />
