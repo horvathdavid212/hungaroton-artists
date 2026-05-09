@@ -92,6 +92,7 @@ export const fetchArtists = async (query: ArtistQuery): Promise<ArtistsFetchResu
   const url = buildArtistApiUrl(query);
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
+    console.log(`[fetchArtists] attempt ${attempt + 1}/${MAX_RETRIES + 1}`, url);
     try {
       const response = await fetch(url, {
         cache: 'no-store'
