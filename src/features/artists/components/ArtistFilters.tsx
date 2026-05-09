@@ -131,7 +131,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
           justifyContent: 'center',
           ml: isStuck ? 'calc(50% - 50vw)' : 0,
           mr: isStuck ? 'calc(50% - 50vw)' : 0,
-          p: 3,
+          p: { xs: 1, md: 2 },
           position: 'relative',
           transition: theme.app.transition.stickyPanel,
           width: isStuck ? '100vw' : '100%'
@@ -175,7 +175,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
             </Stack>
           ) : null}
           <Collapse id={FILTER_CONTENT_ID} in={isFilterContentVisible} timeout="auto">
-            <Stack spacing={3}>
+            <Stack spacing={{ xs: 1, md: 3 }}>
               <Box
                 sx={{
                   display: 'grid',
@@ -196,7 +196,14 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                   <ResetFiltersButton query={query} />
                 </Box>
               </Box>
-              <Box sx={{ mx: isStuck ? 'auto' : 0, maxWidth: isStuck ? 'lg' : 'none', px: isStuck ? { xs: 2, sm: 3 } : 0, transition: 'padding 180ms ease' }}>
+              <Box
+                sx={{
+                  mx: isStuck ? 'auto' : 0,
+                  maxWidth: isStuck ? 'lg' : 'none',
+                  px: isStuck ? { xs: 2, sm: 3 } : 0,
+                  transition: 'padding 180ms ease'
+                }}
+              >
                 <LetterFilter query={query} />
               </Box>
             </Stack>
