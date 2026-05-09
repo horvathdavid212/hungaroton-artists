@@ -32,11 +32,11 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
         return;
       }
 
-      const nextIsStuck = stickyElement.getBoundingClientRect().top <= 0;
+      const isFilterStuck = stickyElement.getBoundingClientRect().top <= 0;
 
-      if (nextIsStuck !== isStuckRef.current) {
-        isStuckRef.current = nextIsStuck;
-        setIsStuck(nextIsStuck);
+      if (isFilterStuck !== isStuckRef.current) {
+        isStuckRef.current = isFilterStuck;
+        setIsStuck(isFilterStuck);
       }
     };
 
@@ -75,7 +75,9 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
         component="section"
         elevation={0}
         sx={{
-          bgcolor: 'background.paper',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           border: 1,
           borderColor: 'divider',
           borderRadius: isStuck ? 0 : 'var(--radius-lg)',
@@ -87,7 +89,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
           width: isStuck ? '100vw' : '100%'
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={2} sx={{flexGrow: 1, maxWidth:"lg" }}>
           <Stack
             direction={{ xs: 'column', md: 'row' }}
             spacing={2}

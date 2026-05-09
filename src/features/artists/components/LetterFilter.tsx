@@ -2,11 +2,11 @@
 
 import Box from '@mui/material/Box';
 import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { ARTIST_ALPHABET } from '@/features/artists/constants/alphabet';
+import { type MouseEvent } from 'react';
+import { ARTIST_ALPHABET, type ArtistAlphabetLetter } from '@/features/artists/constants/alphabet';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForLetter } from '@/features/artists/utils/updateArtistSearchParams';
 
@@ -20,42 +20,56 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
   const searchParams = useSearchParams();
   const t = useTranslations('artistSearch');
 
-  const handleLetterChange = (_event: React.MouseEvent<HTMLElement>, nextLetter: string | null) => {
-    router.replace(`${pathname}?${updateArtistSearchParamsForLetter(searchParams, nextLetter ?? '')}`);
+  const handleLetterClick = (_event: MouseEvent<HTMLElement>, letter: ArtistAlphabetLetter) => {
+    const nextLetter = query.letter === letter ? '' : letter;
+    const nextSearchParams = updateArtistSearchParamsForLetter(searchParams, nextLetter);
+
+    router.replace(`${pathname}?${nextSearchParams}`);
   };
 
   return (
-    <Box>
-      <Typography component="h2" gutterBottom sx={{ fontWeight: 700 }} variant="body2">
+    <Box component="section" aria-labelledby="letter-filter-title">
+      <Typography component="h2" gutterBottom id="letter-filter-title" sx={{ fontWeight: 700 }} variant="body2">
         {t('letterFilterLabel')}
       </Typography>
-      <ToggleButtonGroup
-        aria-label={t('letterFilterLabel')}
-        exclusive
-        onChange={handleLetterChange}
-        size="small"
+
+      <Box
+        role="group"
+        aria-labelledby="letter-filter-title"
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap'
+          display: 'grid',
+          gap: 0.3,
+          gridTemplateColumns: {
+            xs: 'repeat(auto-fit, minmax(40px, 1fr))',
+            sm: 'repeat(auto-fill, minmax(40px, 40px))'
+          }
         }}
-        value={query.letter ?? null}
       >
-        {ARTIST_ALPHABET.map((letter) => (
-          <ToggleButton
-            aria-label={`${t('letterFilterLabel')}: ${letter}`}
-            key={letter}
-            sx={{
-              border: 1,
-              borderColor: 'divider',
-              flex: { xs: '1 0 40px', sm: '0 0 40px' },
-              minWidth: 40
-            }}
-            value={letter}
-          >
-            {letter}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+        {ARTIST_ALPHABET.map((letter) => {
+          const isSelected = query.letter === letter;
+
+          return (
+            <ToggleButton
+              aria-label={`${t('letterFilterLabel')}: ${letter}`}
+              key={letter}
+              onClick={(event) => handleLetterClick(event, letter)}
+              selected={isSelected}
+              sx={{
+                border: 1,
+                borderColor: 'divider',
+                borderRadius: 'var(--radius-sm)',
+                fontWeight: isSelected ? 700 : 500,
+                height: 40,
+                minWidth: 40,
+                px: 1
+              }}
+              value={letter}
+            >
+              {letter}
+            </ToggleButton>
+          );
+        })}
+      </Box>
     </Box>
   );
 };

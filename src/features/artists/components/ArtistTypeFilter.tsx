@@ -29,7 +29,7 @@ export const ArtistTypeFilter = ({ query }: ArtistTypeFilterProps) => {
       size="small"
       sx={{
         flexShrink: 0,
-        minWidth: { xs: '100%', sm: 220 }
+        minWidth: { xs: '100%', sm: 250 }
       }}
     >
       <InputLabel id="artist-type-filter-label">{t('typeFilterLabel')}</InputLabel>
