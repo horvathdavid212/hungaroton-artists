@@ -22,7 +22,7 @@ const content = ({ action, description, devMessage, severity, title }: FeedbackS
       </Typography>
       <Typography color={severity ? 'inherit' : 'text.secondary'} component="p">
         <Box>{description}</Box>
-        <Box>Dev message: {devMessage}</Box>
+        {devMessage && <Box>Dev message: {devMessage}</Box>}
       </Typography>
     </Stack>
     {action}
