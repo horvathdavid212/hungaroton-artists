@@ -17,7 +17,7 @@ export const ArtistResults = async ({ query }: ArtistResultsProps) => {
   const result = await fetchArtists(query);
 
   if (!result.ok) {
-    return <ErrorState />;
+    return <ErrorState result={result} />;
   }
 
   if (result.data.artists.length === 0) {
