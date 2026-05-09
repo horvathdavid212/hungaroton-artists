@@ -20,10 +20,15 @@ const content = ({ action, description, devMessage, severity, title }: FeedbackS
       <Typography component="h2" variant="h2">
         {title}
       </Typography>
-      <Typography color={severity ? 'inherit' : 'text.secondary'} component="p">
+      <Box
+        sx={{
+          color: severity ? 'inherit' : theme.palette.text.secondary,
+          typography: 'body1'
+        }}
+      >
         <Box>{description}</Box>
         {devMessage && <Box>Dev message: {devMessage}</Box>}
-      </Typography>
+      </Box>
     </Stack>
     {action}
   </Stack>
