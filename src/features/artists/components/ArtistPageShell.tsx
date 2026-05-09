@@ -7,6 +7,7 @@ import type { ReactNode } from 'react';
 import { ArtistFilters } from '@/features/artists/components/ArtistFilters';
 import { LanguageSwitcher } from '@/features/artists/components/LanguageSwitcher';
 import type { ArtistQuery } from '@/features/artists/types/artist';
+import { theme } from '@/theme/theme';
 
 type ArtistPageShellProps = {
   children: ReactNode;
@@ -20,7 +21,7 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
     <Box
       component="main"
       sx={{
-        bgcolor: 'background.default',
+        bgcolor: theme.palette.background.default,
         flex: 1,
         py: { xs: 3, md: 6 }
       }}
@@ -34,7 +35,7 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
             sx={{
               alignItems: { xs: 'stretch', sm: 'flex-start' },
               borderLeft: 4,
-              borderColor: 'primary.main',
+              borderColor: theme.palette.primary.main,
               justifyContent: 'space-between',
               pl: { xs: 2, md: 3 }
             }}

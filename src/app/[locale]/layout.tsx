@@ -5,7 +5,6 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import '@/app/globals.css';
 import { routing } from '@/i18n/routing';
-import '@/styles/tokens.css';
 import { ThemeRegistry } from '@/theme/ThemeRegistry';
 
 const geistSans = Geist({

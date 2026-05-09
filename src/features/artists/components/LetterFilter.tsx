@@ -9,6 +9,7 @@ import type { MouseEvent } from 'react';
 import { ARTIST_ALPHABET, type ArtistAlphabetLetter } from '@/features/artists/constants/alphabet';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForLetter } from '@/features/artists/utils/updateArtistSearchParams';
+import { theme } from '@/theme/theme';
 
 type LetterFilterProps = {
   query: ArtistQuery;
@@ -29,7 +30,7 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
 
   return (
     <Box aria-labelledby="letter-filter-title" component="section">
-      <Typography component="h2" gutterBottom id="letter-filter-title" sx={{ fontWeight: 700 }} variant="body2">
+      <Typography component="h2" gutterBottom id="letter-filter-title" sx={{ fontWeight: theme.typography.fontWeightBold }} variant="body2">
         {t('letterFilterLabel')}
       </Typography>
 
@@ -39,10 +40,7 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
         sx={{
           display: 'grid',
           gap: 0.3,
-          gridTemplateColumns: {
-            xs: 'repeat(auto-fit, minmax(40px, 1fr))',
-            sm: 'repeat(auto-fill, minmax(40px, 40px))'
-          }
+          gridTemplateColumns: theme.app.gridTemplateColumns.letterFilter
         }}
       >
         {ARTIST_ALPHABET.map((letter) => {
@@ -56,9 +54,9 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
               selected={isSelected}
               sx={{
                 border: 1,
-                borderColor: 'divider',
-                borderRadius: 'var(--radius-sm)',
-                fontWeight: isSelected ? 700 : 500,
+                borderColor: theme.palette.divider,
+                borderRadius: theme.app.radius.sm,
+                fontWeight: isSelected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
                 height: 40,
                 minWidth: 40,
                 px: 1

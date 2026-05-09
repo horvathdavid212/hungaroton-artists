@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { ArtistImage } from '@/features/artists/components/ArtistImage';
 import type { Artist } from '@/features/artists/types/artist';
+import { theme } from '@/theme/theme';
 
 type ArtistCardProps = {
   artist: Artist;
@@ -23,7 +24,7 @@ export const ArtistCard = ({ artist }: ArtistCardProps) => {
         overflow: 'hidden',
         transition: 'border-color 160ms ease, transform 160ms ease',
         '&:hover': {
-          borderColor: 'primary.main',
+          borderColor: theme.palette.primary.main,
           transform: 'translateY(-2px)'
         }
       }}
@@ -34,8 +35,8 @@ export const ArtistCard = ({ artist }: ArtistCardProps) => {
           <Typography
             component="h3"
             sx={{
-              fontSize: 'var(--font-size-lg)',
-              fontWeight: 700,
+              fontSize: theme.app.fontSize.lg,
+              fontWeight: theme.typography.fontWeightBold,
               lineHeight: 1.25,
               overflowWrap: 'anywhere'
             }}

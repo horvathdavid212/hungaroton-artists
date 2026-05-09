@@ -17,6 +17,7 @@ import { LetterFilter } from '@/features/artists/components/LetterFilter';
 import { ResetFiltersButton } from '@/features/artists/components/ResetFiltersButton';
 import { SearchInput } from '@/features/artists/components/SearchInput';
 import type { ArtistQuery } from '@/features/artists/types/artist';
+import { theme } from '@/theme/theme';
 
 type ArtistFiltersProps = {
   query: ArtistQuery;
@@ -113,28 +114,28 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
       sx={{
         position: 'sticky',
         top: 0,
-        zIndex: 10
+        zIndex: theme.zIndex.appBar
       }}
     >
       <Paper
         component="section"
         elevation={0}
-        sx={(theme) => ({
+        sx={{
           alignItems: 'center',
           bgcolor: theme.palette.background.paper,
           border: 1,
           borderColor: theme.palette.divider,
-          borderRadius: isStuck ? 0 : 'var(--radius-lg)',
-          boxShadow: isStuck ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+          borderRadius: isStuck ? 0 : theme.app.radius.lg,
+          boxShadow: isStuck ? theme.app.shadow.md : theme.app.shadow.sm,
           display: 'flex',
           justifyContent: 'center',
           ml: isStuck ? 'calc(50% - 50vw)' : 0,
           mr: isStuck ? 'calc(50% - 50vw)' : 0,
           p: 3,
           position: 'relative',
-          transition: 'margin 180ms ease, width 180ms ease, border-radius 180ms ease, box-shadow 180ms ease',
+          transition: theme.app.transition.stickyPanel,
           width: isStuck ? '100vw' : '100%'
-        })}
+        }}
       >
         <Stack spacing={shouldShowFilterSummary ? 2 : 0} sx={{ flexGrow: 1, maxWidth: 'lg' }}>
           {shouldShowFilterSummary ? (
@@ -148,7 +149,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
               }}
             >
               <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }} useFlexGap>
-                <Typography component="h2" sx={{ fontWeight: 700 }} variant="body1">
+                <Typography component="h2" sx={{ fontWeight: theme.typography.fontWeightBold }} variant="body1">
                   {t('filtersTitle')}
                 </Typography>
                 {activeFilters.length > 0 ? (
@@ -179,11 +180,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                 sx={{
                   display: 'grid',
                   gap: 2,
-                  gridTemplateColumns: {
-                    xs: '1fr',
-                    sm: 'minmax(0, 1fr) auto',
-                    md: 'minmax(360px, 1fr) 240px auto'
-                  },
+                  gridTemplateColumns: theme.app.gridTemplateColumns.filterControls,
                   alignItems: 'center',
                   mx: isStuck ? 'auto' : 0,
                   maxWidth: isStuck ? 'lg' : 'none',
@@ -225,17 +222,17 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                   onClick={() => setIsExpanded((currentValue) => !currentValue)}
                   size="small"
                   sx={{
-                    bgcolor: 'background.paper',
+                    bgcolor: theme.palette.background.paper,
                     border: 1,
-                    borderColor: 'divider',
-                    color: 'primary.main',
+                    borderColor: theme.palette.divider,
+                    color: theme.palette.primary.main,
                     height: 40,
                     width: 40,
                     pointerEvents: 'auto',
                     '&:hover': {
-                      bgcolor: 'background.paper',
-                      borderColor: 'primary.main',
-                      color: 'primary.main'
+                      bgcolor: theme.palette.background.paper,
+                      borderColor: theme.palette.primary.main,
+                      color: theme.palette.primary.main
                     }
                   }}
                   type="button"

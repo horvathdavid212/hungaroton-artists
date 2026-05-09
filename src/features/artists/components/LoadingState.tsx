@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useTranslations } from 'next-intl';
+import { theme } from '@/theme/theme';
 
 const LOADING_CARD_KEYS = [
   'loading-artist-card-1',
@@ -22,7 +23,7 @@ export const LoadingState = () => {
     <Paper
       aria-label={t('loading')}
       sx={{
-        borderRadius: 'var(--radius-lg)',
+        borderRadius: theme.app.radius.lg,
         p: { xs: 2, md: 3 }
       }}
       variant="outlined"
@@ -36,12 +37,7 @@ export const LoadingState = () => {
           sx={{
             display: 'grid',
             gap: { xs: 2, md: 2.5 },
-            gridTemplateColumns: {
-              xs: '1fr',
-              sm: 'repeat(2, minmax(0, 1fr))',
-              md: 'repeat(3, minmax(0, 1fr))',
-              lg: 'repeat(4, minmax(0, 1fr))'
-            }
+            gridTemplateColumns: theme.app.gridTemplateColumns.artistCards
           }}
         >
           {LOADING_CARD_KEYS.map((cardKey) => (

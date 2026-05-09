@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { ResetFiltersButton } from '@/features/artists/components/ResetFiltersButton';
 import type { ArtistQuery } from '@/features/artists/types/artist';
+import { theme } from '@/theme/theme';
 
 type EmptyStateProps = {
   query: ArtistQuery;
@@ -15,7 +16,7 @@ export const EmptyState = ({ query }: EmptyStateProps) => {
   return (
     <Paper
       sx={{
-        borderRadius: 'var(--radius-lg)',
+        borderRadius: theme.app.radius.lg,
         p: { xs: 3, md: 4 }
       }}
       variant="outlined"

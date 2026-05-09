@@ -1,32 +1,101 @@
 import { createTheme } from '@mui/material/styles';
 
+const paletteTokens = {
+  background: '#101512',
+  surface: '#18221d',
+  surfaceMuted: '#223028',
+  text: '#f4f7f1',
+  textMuted: '#c8d2c6',
+  border: '#36443c',
+  primary: '#e8b84a',
+  primaryDark: '#b88a1f',
+  primaryContrast: '#11140f',
+  secondary: '#66d0c5',
+  secondaryDark: '#2a9f94',
+  secondaryContrast: '#071916',
+  error: '#f07b7b',
+  focus: '#f2cf7b'
+} as const;
+
+const appTokens = {
+  color: {
+    surfaceMuted: paletteTokens.surfaceMuted,
+    focus: paletteTokens.focus
+  },
+  fontSize: {
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.125rem',
+    xl: '1.5rem',
+    xxl: '2rem'
+  },
+  gridTemplateColumns: {
+    artistCards: {
+      xs: '1fr',
+      sm: 'repeat(2, minmax(0, 1fr))',
+      md: 'repeat(3, minmax(0, 1fr))',
+      lg: 'repeat(4, minmax(0, 1fr))'
+    },
+    filterControls: {
+      xs: '1fr',
+      sm: 'minmax(0, 1fr) auto',
+      md: 'minmax(360px, 1fr) 240px auto'
+    },
+    letterFilter: {
+      xs: 'repeat(auto-fit, minmax(40px, 1fr))',
+      sm: 'repeat(auto-fill, minmax(40px, 40px))'
+    }
+  },
+  radius: {
+    sm: '4px',
+    md: '10px',
+    lg: '14px'
+  },
+  shadow: {
+    sm: '0 1px 2px rgb(0 0 0 / 22%)',
+    md: '0 18px 48px rgb(0 0 0 / 30%)'
+  },
+  transition: {
+    stickyPanel: 'margin 180ms ease, width 180ms ease, border-radius 180ms ease, box-shadow 180ms ease'
+  }
+} as const;
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    app: typeof appTokens;
+  }
+
+  interface ThemeOptions {
+    app?: typeof appTokens;
+  }
+}
+
 export const theme = createTheme({
-  // Note: Can't use CSS variables directly in the palette object,
-  // so we use the same values as in tokens.css for consistency.
+  app: appTokens,
   palette: {
     mode: 'dark',
     background: {
-      default: '#101512',
-      paper: '#18221d'
+      default: paletteTokens.background,
+      paper: paletteTokens.surface
     },
     primary: {
-      main: '#e8b84a',
-      dark: '#b88a1f',
-      contrastText: '#11140f'
+      main: paletteTokens.primary,
+      dark: paletteTokens.primaryDark,
+      contrastText: paletteTokens.primaryContrast
     },
     secondary: {
-      main: '#66d0c5',
-      dark: '#2a9f94',
-      contrastText: '#071916'
+      main: paletteTokens.secondary,
+      dark: paletteTokens.secondaryDark,
+      contrastText: paletteTokens.secondaryContrast
     },
     error: {
-      main: '#f07b7b'
+      main: paletteTokens.error
     },
     text: {
-      primary: '#f4f7f1',
-      secondary: '#c8d2c6'
+      primary: paletteTokens.text,
+      secondary: paletteTokens.textMuted
     },
-    divider: '#36443c'
+    divider: paletteTokens.border
   },
   shape: {
     borderRadius: 10
@@ -34,22 +103,22 @@ export const theme = createTheme({
   typography: {
     fontFamily: 'var(--font-geist-sans, Arial, Helvetica, sans-serif)',
     h1: {
-      fontSize: 'var(--font-size-2xl)',
+      fontSize: appTokens.fontSize.xxl,
       fontWeight: 700,
       letterSpacing: 0,
       lineHeight: 1.15
     },
     h2: {
-      fontSize: 'var(--font-size-xl)',
+      fontSize: appTokens.fontSize.xl,
       fontWeight: 700,
       letterSpacing: 0,
       lineHeight: 1.2
     },
     body1: {
-      fontSize: 'var(--font-size-md)'
+      fontSize: appTokens.fontSize.md
     },
     body2: {
-      fontSize: 'var(--font-size-sm)'
+      fontSize: appTokens.fontSize.sm
     },
     button: {
       fontWeight: 600,
@@ -61,7 +130,7 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 'var(--radius-md)',
+          borderRadius: appTokens.radius.md,
           minHeight: 40
         }
       }
@@ -69,15 +138,15 @@ export const theme = createTheme({
     MuiToggleButton: {
       styleOverrides: {
         root: {
-          borderRadius: 'var(--radius-sm)',
-          color: 'var(--color-text-muted)',
+          borderRadius: appTokens.radius.sm,
+          color: paletteTokens.textMuted,
           minHeight: 40,
           '&.Mui-selected': {
-            backgroundColor: 'var(--color-primary)',
-            color: 'var(--color-primary-contrast)'
+            backgroundColor: paletteTokens.primary,
+            color: paletteTokens.primaryContrast
           },
           '&.Mui-selected:hover': {
-            backgroundColor: 'var(--color-primary-dark)'
+            backgroundColor: paletteTokens.primaryDark
           }
         }
       }
@@ -85,10 +154,10 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: 'var(--radius-md)',
-          boxShadow: 'var(--shadow-sm)',
-          border: '1px solid var(--color-border)',
-          backgroundImage: 'none'
+          backgroundImage: 'none',
+          border: `1px solid ${paletteTokens.border}`,
+          borderRadius: appTokens.radius.md,
+          boxShadow: appTokens.shadow.sm
         }
       }
     },
@@ -102,16 +171,23 @@ export const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          backgroundColor: 'var(--color-surface-muted)',
-          borderRadius: 'var(--radius-md)'
+          backgroundColor: appTokens.color.surfaceMuted,
+          borderRadius: appTokens.radius.md
         }
       }
     },
     MuiCssBaseline: {
       styleOverrides: {
         ':focus-visible': {
-          outline: '2px solid var(--color-focus)',
+          outline: `2px solid ${appTokens.color.focus}`,
           outlineOffset: 2
+        },
+        body: {
+          backgroundColor: paletteTokens.background,
+          color: paletteTokens.text,
+          fontFamily: 'var(--font-geist-sans, Arial, Helvetica, sans-serif)',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale'
         }
       }
     }

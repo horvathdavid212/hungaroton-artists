@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { theme } from '@/theme/theme';
 
 type ArtistImageProps = {
   imageUrl: string | null;
@@ -25,9 +26,9 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
       sx={{
         alignItems: 'center',
         aspectRatio: '4 / 3',
-        bgcolor: 'var(--color-surface-muted)',
+        bgcolor: theme.app.color.surfaceMuted,
         borderBottom: 1,
-        borderColor: 'divider',
+        borderColor: theme.palette.divider,
         display: 'flex',
         justifyContent: 'center',
         overflow: 'hidden',
@@ -40,19 +41,19 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
           role="img"
           sx={{
             alignItems: 'center',
-            bgcolor: 'background.paper',
+            bgcolor: theme.palette.background.paper,
             border: 1,
-            borderColor: 'secondary.main',
+            borderColor: theme.palette.secondary.main,
             borderRadius: '50%',
-            boxShadow: 'var(--shadow-sm)',
-            color: 'secondary.main',
+            boxShadow: theme.app.shadow.sm,
+            color: theme.palette.secondary.main,
             display: 'flex',
             height: { xs: 64, md: 72 },
             justifyContent: 'center',
             width: { xs: 64, md: 72 }
           }}
         >
-          <Typography component="span" sx={{ fontWeight: 700 }} variant="h2">
+          <Typography component="span" sx={{ fontWeight: theme.typography.fontWeightBold }} variant="h2">
             {getFallbackLetter(name)}
           </Typography>
         </Box>
