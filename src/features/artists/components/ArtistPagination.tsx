@@ -1,12 +1,14 @@
 'use client';
 
+import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { ArtistsPagination } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForPagination } from '@/features/artists/utils/updateArtistSearchParams';
+import { theme } from '@/theme/theme';
 
 type ArtistPaginationProps = {
   pagination: ArtistsPagination;
@@ -27,36 +29,59 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
   };
 
   return (
-    <Stack spacing={1.5} sx={{ alignItems: 'center', pt: 1 }}>
-      <Typography color="text.secondary" variant="body2">
-        {t('page')} {pagination.currentPage}
-      </Typography>
-      <Pagination
-        color="primary"
-        count={pagination.totalPages}
-        getItemAriaLabel={(type, page) => {
-          if (type === 'previous') {
-            return t('previous');
-          }
-
-          if (type === 'next') {
-            return t('next');
-          }
-
-          return `${t('page')} ${page}`;
-        }}
-        onChange={handlePageChange}
-        page={pagination.currentPage}
-        shape="rounded"
-        siblingCount={0}
+    <Box
+      sx={{
+        bottom: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        maxWidth: '100%',
+        pb: 'max(env(safe-area-inset-bottom), 8px)',
+        position: 'sticky',
+        width: '100%',
+        zIndex: theme.zIndex.appBar - 1
+      }}
+    >
+      <Paper
+        elevation={0}
         sx={{
-          '& .MuiPagination-ul': {
-            flexWrap: 'wrap',
-            gap: 0.5,
-            justifyContent: 'center'
-          }
+          bgcolor: theme.palette.background.paper,
+          border: 1,
+          borderColor: theme.palette.divider,
+          borderRadius: theme.app.radius.lg,
+          boxShadow: theme.app.shadow.md,
+          maxWidth: '100%',
+          p: 1
         }}
-      />
-    </Stack>
+      >
+        <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Pagination
+            color="primary"
+            count={pagination.totalPages}
+            getItemAriaLabel={(type, page) => {
+              if (type === 'previous') {
+                return t('previous');
+              }
+
+              if (type === 'next') {
+                return t('next');
+              }
+
+              return `${t('page')} ${page}`;
+            }}
+            onChange={handlePageChange}
+            page={pagination.currentPage}
+            shape="rounded"
+            siblingCount={0}
+            sx={{
+              '& .MuiPagination-ul': {
+                flexWrap: 'wrap',
+                gap: 0,
+                justifyContent: 'center'
+              }
+            }}
+          />
+        </Stack>
+      </Paper>
+    </Box>
   );
 };

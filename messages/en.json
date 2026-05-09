@@ -42,7 +42,7 @@
     "imageAlt": "{name} portrait",
     "imageFallbackLabel": "No portrait available for {name}",
     "totalArtists": "{count, plural, one {# artist} other {# artists}}",
-    "paginationSummary": "Showing page {currentPage} of {totalPages}.",
+    "paginationSummary": "Page {currentPage} of {totalPages}.",
     "albumCount": "{count, plural, one {# album} other {# albums}}"
   },
   "pagination": {

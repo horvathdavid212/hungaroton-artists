@@ -37,12 +37,6 @@ export const ArtistResults = async ({ query }: ArtistResultsProps) => {
         <Typography component="h2" variant="h2">
           {t('totalArtists', { count: result.data.pagination.totalItems })}
         </Typography>
-        <Typography color="text.secondary" sx={{ textAlign: { xs: 'left', sm: 'right' } }} variant="body2">
-          {t('paginationSummary', {
-            currentPage: result.data.pagination.currentPage,
-            totalPages: result.data.pagination.totalPages
-          })}
-        </Typography>
       </Stack>
       <ArtistGrid artists={result.data.artists} />
       <ArtistPagination pagination={result.data.pagination} />
