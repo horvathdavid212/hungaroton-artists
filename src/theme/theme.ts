@@ -32,7 +32,7 @@ export const theme = createTheme({
     borderRadius: 10
   },
   typography: {
-    fontFamily: 'var(--font-geist-sans), Arial, Helvetica, sans-serif',
+    fontFamily: 'var(--font-geist-sans, Arial, Helvetica, sans-serif)',
     h1: {
       fontSize: 'var(--font-size-2xl)',
       fontWeight: 700,
