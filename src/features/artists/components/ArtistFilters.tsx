@@ -3,15 +3,14 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
+import { ArtistFilterSummary } from '@/features/artists/components/ArtistFilterSummary';
 import { ArtistTypeFilter } from '@/features/artists/components/ArtistTypeFilter';
 import { LetterFilter } from '@/features/artists/components/LetterFilter';
 import { ResetFiltersButton } from '@/features/artists/components/ResetFiltersButton';
@@ -36,32 +35,6 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
   const isFilterContentVisible = !isStuck || isExpanded;
   const shouldShowFilterSummary = isStuck && !isExpanded;
   const toggleButtonLabel = isExpanded ? t('hideFiltersButton') : t('showFiltersButton');
-  const activeFilters = [
-    query.search
-      ? {
-          key: 'search',
-          label: `${t('activeFilterLabels.search')}: ${query.search}`
-        }
-      : null,
-    query.letter
-      ? {
-          key: 'letter',
-          label: `${t('activeFilterLabels.letter')}: ${query.letter}`
-        }
-      : null,
-    query.type
-      ? {
-          key: 'type',
-          label: `${t('activeFilterLabels.type')}: ${t(`artistTypeLabels.${query.type}`)}`
-        }
-      : null,
-    query.page > 1
-      ? {
-          key: 'page',
-          label: `${t('pageLabel')}: ${query.page}`
-        }
-      : null
-  ].filter((filter): filter is { key: string; label: string } => Boolean(filter));
 
   useEffect(() => {
     let animationFrame = 0;
@@ -149,40 +122,15 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
         >
           <Stack spacing={shouldShowFilterSummary ? 2 : 0} sx={{ flexGrow: 1, maxWidth: 'lg' }}>
             {shouldShowFilterSummary ? (
-              <Stack
-                spacing={1.5}
+              <ArtistFilterSummary
+                query={query}
                 sx={{
                   mx: isStuck ? 'auto' : 0,
                   maxWidth: 'lg',
                   px: { xs: 2, sm: 3 },
                   transition: 'padding 180ms ease'
                 }}
-              >
-                <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap', minWidth: 0 }} useFlexGap>
-                  <Typography component="h2" sx={{ fontWeight: theme.typography.fontWeightBold }} variant="body1">
-                    {t('filtersTitle')}
-                  </Typography>
-                  {activeFilters.length > 0 ? (
-                    <Stack aria-label={t('activeFiltersLabel')} direction="row" spacing={0.75} sx={{ flexWrap: 'wrap', minWidth: 0 }} useFlexGap>
-                      {activeFilters.map((filter) => (
-                        <Chip
-                          key={filter.key}
-                          label={filter.label}
-                          size="small"
-                          sx={{
-                            maxWidth: { xs: '100%', sm: 260 },
-                            '& .MuiChip-label': {
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis'
-                            }
-                          }}
-                          variant="outlined"
-                        />
-                      ))}
-                    </Stack>
-                  ) : null}
-                </Stack>
-              </Stack>
+              />
             ) : null}
             <Collapse id={FILTER_CONTENT_ID} in={isFilterContentVisible} timeout="auto">
               <Stack spacing={{ xs: 1, md: 3 }}>
