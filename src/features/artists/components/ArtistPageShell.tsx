@@ -23,35 +23,37 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
       sx={{
         bgcolor: theme.palette.background.default,
         flex: 1,
-        py: { xs: 3, md: 6 }
+        py: { xs: 1, md: 2 }
       }}
     >
       <Container maxWidth="lg">
-        <Stack spacing={{ xs: 3, md: 4 }}>
-          <Stack
-            component="header"
-            direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
-            sx={{
-              alignItems: { xs: 'stretch', sm: 'flex-start' },
-              borderLeft: 4,
-              borderColor: theme.palette.primary.main,
-              justifyContent: 'space-between',
-              pl: { xs: 2, md: 3 }
-            }}
-          >
-            <Stack spacing={1.5}>
-              <Typography component="h1" variant="h1">
-                {t('title')}
-              </Typography>
-              <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
-                {t('subtitle')}
-              </Typography>
+        <Stack>
+          <Box sx={{ mb: { xs: 3, md: 4 } }}>
+            <Stack
+              component="header"
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={2}
+              sx={{
+                alignItems: { xs: 'stretch', sm: 'flex-start' },
+                borderLeft: 4,
+                borderColor: theme.palette.primary.main,
+                justifyContent: 'space-between',
+                pl: { xs: 2, md: 3 }
+              }}
+            >
+              <Stack spacing={1}>
+                <Typography component="h1" variant="h1">
+                  {t('title')}
+                </Typography>
+                <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
+                  {t('subtitle')}
+                </Typography>
+              </Stack>
+              <LanguageSwitcher />
             </Stack>
-            <LanguageSwitcher />
-          </Stack>
+          </Box>
           <ArtistFilters query={query} />
-          {children}
+          <Box sx={{ mt: { xs: 3, md: 4 } }}>{children}</Box>
         </Stack>
       </Container>
     </Box>

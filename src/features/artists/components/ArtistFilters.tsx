@@ -111,7 +111,14 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
 
   return (
     <>
-      <Box ref={stickyBoundaryRef} sx={{ height: 0 }} />
+      <Box
+        aria-hidden="true"
+        ref={stickyBoundaryRef}
+        sx={{
+          height: 0,
+          overflow: 'hidden'
+        }}
+      />
       <Box
         ref={stickyRef}
         sx={{
