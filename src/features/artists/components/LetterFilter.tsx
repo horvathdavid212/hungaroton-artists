@@ -1,11 +1,7 @@
 'use client';
 
 import Box from '@mui/material/Box';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import type { SelectChangeEvent } from '@mui/material/Select';
-import Select from '@mui/material/Select';
 import ToggleButton from '@mui/material/ToggleButton';
 import Typography from '@mui/material/Typography';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -14,6 +10,7 @@ import type { MouseEvent } from 'react';
 import { ARTIST_ALPHABET, type ArtistAlphabetLetter } from '@/features/artists/constants/alphabet';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { updateArtistSearchParamsForLetter } from '@/features/artists/utils/updateArtistSearchParams';
+import { FilterSelectField } from '@/shared/components/FilterSelectField';
 import { theme } from '@/theme/theme';
 
 type LetterFilterProps = {
@@ -25,6 +22,16 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const t = useTranslations('artistSearch');
+  const mobileOptions = [
+    {
+      label: t('allLettersLabel'),
+      value: ''
+    },
+    ...ARTIST_ALPHABET.map((letter) => ({
+      label: letter,
+      value: letter
+    }))
+  ];
 
   const updateLetter = (letter: string) => {
     const nextSearchParams = updateArtistSearchParamsForLetter(searchParams, letter);
@@ -54,26 +61,14 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
         {t('letterFilterLabel')}
       </Typography>
 
-      <FormControl size="small" sx={{ display: { xs: 'block', sm: 'none' }, width: '100%' }}>
-        <InputLabel id="letter-filter-mobile-label">{t('letterFilterLabel')}</InputLabel>
-        <Select
-          fullWidth
-          label={t('letterFilterLabel')}
-          labelId="letter-filter-mobile-label"
-          MenuProps={{
-            disableScrollLock: true
-          }}
-          onChange={handleLetterSelectChange}
-          value={query.letter ?? ''}
-        >
-          <MenuItem value="">{t('allLettersLabel')}</MenuItem>
-          {ARTIST_ALPHABET.map((letter) => (
-            <MenuItem key={letter} value={letter}>
-              {letter}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <FilterSelectField
+        formControlSx={{ display: { xs: 'block', sm: 'none' }, width: '100%' }}
+        label={t('letterFilterLabel')}
+        labelId="letter-filter-mobile-label"
+        onChange={handleLetterSelectChange}
+        options={mobileOptions}
+        value={query.letter ?? ''}
+      />
 
       <Box
         aria-labelledby="letter-filter-title"
