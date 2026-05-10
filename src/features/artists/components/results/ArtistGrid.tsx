@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import { ArtistCard } from '@/features/artists/components/ArtistCard';
+import { ArtistCard } from '@/features/artists/components/results/ArtistCard';
 import type { Artist } from '@/features/artists/types/artist';
 import { theme } from '@/theme/theme';
 

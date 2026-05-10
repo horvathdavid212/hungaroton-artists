@@ -2,9 +2,9 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
-import { ArtistPageShell } from '@/features/artists/components/ArtistPageShell';
-import { ArtistResults } from '@/features/artists/components/ArtistResults';
-import { LoadingSkeletons } from '@/features/artists/components/LoadingSkeletons';
+import { ArtistPageShell } from '@/features/artists/components/layout/ArtistPageShell';
+import { ArtistResults } from '@/features/artists/components/results/ArtistResults';
+import { LoadingSkeletons } from '@/features/artists/components/results/LoadingSkeletons';
 import { parseArtistSearchParams } from '@/features/artists/utils/parseArtistSearchParams';
 import { routing } from '@/i18n/routing';
 

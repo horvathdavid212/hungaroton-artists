@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
-import { ArtistImage } from '@/features/artists/components/ArtistImage';
+import { ArtistImage } from '@/features/artists/components/results/ArtistImage';
 import type { Artist } from '@/features/artists/types/artist';
 import { theme } from '@/theme/theme';
 

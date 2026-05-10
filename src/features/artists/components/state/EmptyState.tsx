@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { ResetFiltersButton } from '@/features/artists/components/ResetFiltersButton';
+import { ResetFiltersButton } from '@/features/artists/components/filters/ResetFiltersButton';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 import { FeedbackState } from '@/shared/components/FeedbackState';
 

@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import type { ReactNode } from 'react';
-import { LanguageSwitcher } from '@/features/artists/components/LanguageSwitcher';
+import { LanguageSwitcher } from '@/shared/components/LanguageSwitcher';
 import { theme } from '@/theme/theme';
 
 type PageShellProps = {

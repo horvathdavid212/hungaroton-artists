@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { RetryButton } from '@/features/artists/components/RetryButton';
+import { RetryButton } from '@/features/artists/components/state/RetryButton';
 import type { ArtistsFetchResult } from '@/features/artists/types/artist';
 import { FeedbackState } from '@/shared/components/FeedbackState';
 

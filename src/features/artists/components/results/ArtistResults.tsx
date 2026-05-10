@@ -2,10 +2,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { getTranslations } from 'next-intl/server';
 import { fetchArtists } from '@/features/artists/api/fetchArtists';
-import { ArtistGrid } from '@/features/artists/components/ArtistGrid';
-import { ArtistPagination } from '@/features/artists/components/ArtistPagination';
-import { EmptyState } from '@/features/artists/components/EmptyState';
-import { ErrorState } from '@/features/artists/components/ErrorState';
+import { ArtistGrid } from '@/features/artists/components/results/ArtistGrid';
+import { ArtistPagination } from '@/features/artists/components/results/ArtistPagination';
+import { EmptyState } from '@/features/artists/components/state/EmptyState';
+import { ErrorState } from '@/features/artists/components/state/ErrorState';
 import type { ArtistQuery } from '@/features/artists/types/artist';
 
 type ArtistResultsProps = {
