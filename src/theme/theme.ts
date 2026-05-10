@@ -54,9 +54,6 @@ const appTokens = {
   shadow: {
     sm: '0 1px 2px rgb(0 0 0 / 22%)',
     md: '0 18px 48px rgb(0 0 0 / 30%)'
-  },
-  transition: {
-    stickyPanel: 'margin 180ms ease, width 180ms ease, border-radius 180ms ease, box-shadow 180ms ease'
   }
 } as const;
 

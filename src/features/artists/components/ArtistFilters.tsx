@@ -113,7 +113,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
             mr: isStuck ? 'calc(50% - 50vw)' : 0,
             p: { xs: 1.5, md: 2 },
             position: 'relative',
-            transition: theme.app.transition.stickyPanel,
+            transition: 'margin 150ms ease, width 150ms ease, border-radius 150ms ease, box-shadow 150ms ease',
             width: isStuck ? '100vw' : '100%'
           }}
         >
@@ -125,7 +125,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                   mx: isStuck ? 'auto' : 0,
                   maxWidth: 'lg',
                   px: { xs: 2, sm: 3 },
-                  transition: 'padding 180ms ease'
+                  transition: 'padding 150ms ease'
                 }}
               />
             ) : null}
@@ -140,7 +140,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                     mx: isStuck ? 'auto' : 0,
                     maxWidth: isStuck ? 'lg' : 'none',
                     px: isStuck ? { xs: 1, sm: 3 } : 0,
-                    transition: 'padding 180ms ease'
+                    transition: 'padding 300ms ease'
                   }}
                 >
                   <Box sx={{ gridColumn: { xs: '1 / -1', sm: '1 / -1', md: 'auto' }, minWidth: 0 }}>
@@ -170,7 +170,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                     mx: isStuck ? 'auto' : 0,
                     maxWidth: isStuck ? 'lg' : 'none',
                     px: isStuck ? { xs: 2, sm: 3 } : 0,
-                    transition: 'padding 180ms ease'
+                    transition: 'padding 150ms ease'
                   }}
                 >
                   <LetterFilter query={query} />
