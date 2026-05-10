@@ -1,16 +1,13 @@
 'use client';
 
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { ArtistFilterSummary } from '@/features/artists/components/ArtistFilterSummary';
+import { ArtistFiltersToggleButton } from '@/features/artists/components/ArtistFiltersToggleButton';
 import { ArtistTypeFilter } from '@/features/artists/components/ArtistTypeFilter';
 import { LetterFilter } from '@/features/artists/components/LetterFilter';
 import { ResetFiltersButton } from '@/features/artists/components/ResetFiltersButton';
@@ -181,36 +178,13 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
               </Stack>
             </Collapse>
             {isStuck ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  pointerEvents: 'none',
-                  position: 'absolute',
-                  transform: 'translateY(50%)'
-                }}
-              >
-                <Tooltip title={toggleButtonLabel}>
-                  <IconButton
-                    aria-controls={FILTER_CONTENT_ID}
-                    aria-expanded={isFilterContentVisible}
-                    aria-label={toggleButtonLabel}
-                    onClick={() => setIsExpanded((currentValue) => !currentValue)}
-                    sx={{
-                      color: theme.palette.primary.main,
-                      height: 40,
-                      width: 40,
-                      pointerEvents: 'auto'
-                    }}
-                    type="button"
-                  >
-                    {isExpanded ? <KeyboardArrowUpIcon fontSize="medium" /> : <KeyboardArrowDownIcon fontSize="medium" />}
-                  </IconButton>
-                </Tooltip>
-              </Box>
+              <ArtistFiltersToggleButton
+                ariaControls={FILTER_CONTENT_ID}
+                ariaExpanded={isFilterContentVisible}
+                isExpanded={isExpanded}
+                label={toggleButtonLabel}
+                onToggle={() => setIsExpanded((currentValue) => !currentValue)}
+              />
             ) : null}
           </Stack>
         </Paper>
