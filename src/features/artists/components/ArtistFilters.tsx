@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 import { ArtistFilterSummary } from '@/features/artists/components/ArtistFilterSummary';
+import { ArtistFiltersContentLayout } from '@/features/artists/components/ArtistFiltersContentLayout';
 import { ArtistFiltersToggleButton } from '@/features/artists/components/ArtistFiltersToggleButton';
 import { ArtistTypeFilter } from '@/features/artists/components/ArtistTypeFilter';
 import { LetterFilter } from '@/features/artists/components/LetterFilter';
@@ -33,6 +34,8 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
   const shouldShowFilterSummary = isStuck && !isExpanded;
   const toggleButtonLabel = isExpanded ? t('hideFiltersButton') : t('showFiltersButton');
 
+  // Tracks when the filter panel reaches the top of the viewport so it can switch into sticky mode.
+  // The scroll/resize listener is throttled with requestAnimationFrame to avoid updating state too often.
   useEffect(() => {
     let animationFrame = 0;
 
@@ -130,52 +133,13 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
               />
             ) : null}
             <Collapse id={FILTER_CONTENT_ID} in={isFilterContentVisible} timeout="auto">
-              <Stack spacing={{ xs: 1, md: 3 }}>
-                <Box
-                  sx={{
-                    display: 'grid',
-                    gap: { xs: 1.5, md: 2 },
-                    gridTemplateColumns: theme.app.gridTemplateColumns.filterControls,
-                    alignItems: 'start',
-                    mx: isStuck ? 'auto' : 0,
-                    maxWidth: isStuck ? 'lg' : 'none',
-                    px: isStuck ? { xs: 1, sm: 3 } : 0,
-                    transition: 'padding 300ms ease'
-                  }}
-                >
-                  <Box sx={{ gridColumn: { xs: '1 / -1', sm: '1 / -1', md: 'auto' }, minWidth: 0 }}>
-                    <SearchInput key={searchInputKey} query={query} />
-                  </Box>
-                  <Box sx={{ gridColumn: { xs: '1 / -1', sm: 'auto' }, minWidth: 0 }}>
-                    <ArtistTypeFilter query={query} />
-                  </Box>
-                  <Box sx={{ display: { xs: 'block', sm: 'none' }, gridColumn: { xs: '1 / -1', sm: 'auto' }, minWidth: 0 }}>
-                    <LetterFilter query={query} />
-                  </Box>
-                  <Box
-                    sx={{
-                      gridColumn: { xs: '1 / -1', sm: 'auto' },
-                      justifySelf: { xs: 'stretch', sm: 'end' },
-                      '& > *': {
-                        width: { xs: '100%', sm: 'auto' }
-                      }
-                    }}
-                  >
-                    <ResetFiltersButton query={query} />
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: { xs: 'none', sm: 'block' },
-                    mx: isStuck ? 'auto' : 0,
-                    maxWidth: isStuck ? 'lg' : 'none',
-                    px: isStuck ? { xs: 2, sm: 3 } : 0,
-                    transition: 'padding 150ms ease'
-                  }}
-                >
-                  <LetterFilter query={query} />
-                </Box>
-              </Stack>
+              <ArtistFiltersContentLayout
+                isStuck={isStuck}
+                letterFilter={<LetterFilter query={query} />}
+                resetButton={<ResetFiltersButton query={query} />}
+                searchInput={<SearchInput key={searchInputKey} query={query} />}
+                typeFilter={<ArtistTypeFilter query={query} />}
+              />
             </Collapse>
             {isStuck ? (
               <ArtistFiltersToggleButton
