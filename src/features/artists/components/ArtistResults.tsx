@@ -25,7 +25,7 @@ export const ArtistResults = async ({ query }: ArtistResultsProps) => {
   }
 
   return (
-    <Stack component="section" spacing={{ xs: 2.5, md: 3 }}>
+    <Stack component="section" spacing={2}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
         spacing={1}

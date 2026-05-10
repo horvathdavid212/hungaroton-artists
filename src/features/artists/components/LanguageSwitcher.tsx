@@ -36,7 +36,7 @@ export const LanguageSwitcher = () => {
       value={currentLocale}
     >
       {routing.locales.map((locale) => (
-        <ToggleButton aria-label={t(locale)} key={locale} sx={{ minWidth: 44 }} value={locale}>
+        <ToggleButton aria-label={t(locale)} key={locale} sx={{ minWidth: 50 }} value={locale}>
           {locale.toUpperCase()}
         </ToggleButton>
       ))}

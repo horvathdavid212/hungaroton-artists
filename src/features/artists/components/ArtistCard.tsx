@@ -30,14 +30,13 @@ export const ArtistCard = ({ artist }: ArtistCardProps) => {
       }}
     >
       <ArtistImage imageUrl={artist.imageUrl} name={artist.name} />
-      <CardContent sx={{ flex: 1, p: { xs: 2, md: 2.25 } }}>
+      <CardContent sx={{ flex: 1, p: 2 }}>
         <Stack spacing={1}>
           <Typography
             component="h3"
             sx={{
-              fontSize: theme.app.fontSize.lg,
+              fontSize: { xs: theme.app.fontSize.sm, sm: theme.app.fontSize.lg },
               fontWeight: theme.typography.fontWeightBold,
-              lineHeight: 1.25,
               overflowWrap: 'anywhere'
             }}
           >

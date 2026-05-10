@@ -35,7 +35,7 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
         display: 'flex',
         justifyContent: 'center',
         maxWidth: '100%',
-        pb: 'max(env(safe-area-inset-bottom), 8px)',
+        pb: 'max(env(safe-area-inset-bottom), 5px)',
         position: 'sticky',
         width: '100%',
         zIndex: theme.zIndex.appBar - 1
@@ -50,7 +50,7 @@ export const ArtistPagination = ({ pagination }: ArtistPaginationProps) => {
           borderRadius: theme.app.radius.lg,
           boxShadow: theme.app.shadow.md,
           maxWidth: '100%',
-          p: 1
+          p: { xs: 0.5, sm: 1 }
         }}
       >
         <Stack direction={{ xs: 'column', sm: 'row' }} sx={{ alignItems: 'center', justifyContent: 'center' }}>

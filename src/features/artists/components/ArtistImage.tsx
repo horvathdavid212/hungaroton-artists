@@ -1,7 +1,7 @@
 'use client';
 
+import ImageNotSupportedOutlinedIcon from '@mui/icons-material/ImageNotSupportedOutlined';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -10,10 +10,6 @@ import { theme } from '@/theme/theme';
 type ArtistImageProps = {
   imageUrl: string | null;
   name: string;
-};
-
-const getFallbackLetter = (name: string) => {
-  return name.trim().charAt(0).toUpperCase() || '?';
 };
 
 export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
@@ -40,22 +36,20 @@ export const ArtistImage = ({ imageUrl, name }: ArtistImageProps) => {
           aria-label={t('imageFallbackLabel', { name })}
           role="img"
           sx={{
-            alignItems: 'center',
             bgcolor: theme.palette.background.paper,
             border: 1,
-            borderColor: theme.palette.secondary.main,
+            borderColor: theme.palette.primary.main,
             borderRadius: '50%',
             boxShadow: theme.app.shadow.sm,
-            color: theme.palette.secondary.main,
+            color: theme.palette.primary.main,
             display: 'flex',
-            height: { xs: 64, md: 72 },
             justifyContent: 'center',
-            width: { xs: 64, md: 72 }
+            alignItems: 'center',
+            height: 50,
+            width: 50
           }}
         >
-          <Typography component="span" sx={{ fontWeight: theme.typography.fontWeightBold }} variant="h2">
-            {getFallbackLetter(name)}
-          </Typography>
+          <ImageNotSupportedOutlinedIcon sx={{ fontSize: 32 }} />
         </Box>
       ) : (
         <Image

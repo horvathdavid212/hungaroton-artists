@@ -37,7 +37,7 @@ const content = ({ action, description, devMessage, severity, title }: FeedbackS
 export const FeedbackState = (props: FeedbackStateProps) => {
   const panelSx = {
     borderRadius: theme.app.radius.lg,
-    p: 4
+    p: 2
   };
 
   if (props.severity) {

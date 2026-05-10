@@ -12,7 +12,7 @@ export const ArtistGrid = ({ artists }: ArtistGridProps) => {
     <Box
       sx={{
         display: 'grid',
-        gap: { xs: 2, md: 2.5 },
+        gap: 2,
         gridTemplateColumns: theme.app.gridTemplateColumns.artistCards
       }}
     >

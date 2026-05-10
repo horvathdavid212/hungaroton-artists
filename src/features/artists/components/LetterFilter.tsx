@@ -64,7 +64,6 @@ export const LetterFilter = ({ query }: LetterFilterProps) => {
             disableScrollLock: true
           }}
           onChange={handleLetterSelectChange}
-          sx={{ bgcolor: theme.palette.background.paper }}
           value={query.letter ?? ''}
         >
           <MenuItem value="">{t('allLettersLabel')}</MenuItem>

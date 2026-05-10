@@ -31,25 +31,32 @@ export const ArtistPageShell = ({ children, query }: ArtistPageShellProps) => {
           <Box sx={{ mb: { xs: 3, md: 4 } }}>
             <Stack
               component="header"
-              direction={{ xs: 'column', sm: 'row' }}
-              spacing={2}
               sx={{
-                alignItems: { xs: 'stretch', sm: 'flex-start' },
                 borderLeft: 4,
                 borderColor: theme.palette.primary.main,
-                justifyContent: 'space-between',
-                pl: { xs: 2, md: 3 }
+                pl: { xs: 1, sm: 2, md: 3 }
               }}
             >
               <Stack spacing={1}>
-                <Typography component="h1" variant="h1">
-                  {t('title')}
-                </Typography>
-                <Typography color="text.secondary" sx={{ maxWidth: 720, textWrap: 'pretty' }}>
+                <Stack direction="row" spacing={1} sx={{ alignItems: 'center', justifyContent: 'space-between', minWidth: 0 }}>
+                  <Typography
+                    component="h1"
+                    sx={{
+                      flex: 1,
+                      fontSize: { xs: theme.app.fontSize.xl, sm: theme.app.fontSize.xxl },
+                      minWidth: 0,
+                      overflowWrap: 'anywhere'
+                    }}
+                    variant="h1"
+                  >
+                    {t('title')}
+                  </Typography>
+                  <LanguageSwitcher />
+                </Stack>
+                <Typography color="text.secondary" sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: 720, textWrap: 'pretty' }}>
                   {t('subtitle')}
                 </Typography>
               </Stack>
-              <LanguageSwitcher />
             </Stack>
           </Box>
           <ArtistFilters query={query} />
