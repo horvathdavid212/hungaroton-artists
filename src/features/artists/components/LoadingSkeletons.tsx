@@ -16,7 +16,7 @@ const LOADING_CARD_KEYS = [
   'loading-artist-card-8'
 ] as const;
 
-export const LoadingState = () => {
+export const LoadingSkeletons = () => {
   const t = useTranslations('common');
 
   return (

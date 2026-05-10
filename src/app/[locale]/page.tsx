@@ -4,7 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import { ArtistPageShell } from '@/features/artists/components/ArtistPageShell';
 import { ArtistResults } from '@/features/artists/components/ArtistResults';
-import { LoadingState } from '@/features/artists/components/LoadingState';
+import { LoadingSkeletons } from '@/features/artists/components/LoadingSkeletons';
 import { parseArtistSearchParams } from '@/features/artists/utils/parseArtistSearchParams';
 import { routing } from '@/i18n/routing';
 
@@ -28,7 +28,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
 
   return (
     <ArtistPageShell query={query}>
-      <Suspense fallback={<LoadingState />} key={resultsKey}>
+      <Suspense fallback={<LoadingSkeletons />} key={resultsKey}>
         <ArtistResults query={query} />
       </Suspense>
     </ArtistPageShell>
