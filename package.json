@@ -7,6 +7,7 @@
     "run dev": "npm run dev",
     "build": "next build",
     "start": "next start",
+    "test:e2e": "playwright test",
     "check": "biome check src",
     "check:write": "biome check --write src",
     "format": "biome format --write src",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.14",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
