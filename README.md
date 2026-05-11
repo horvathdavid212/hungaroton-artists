@@ -4,13 +4,25 @@ Live demo: https://hungaroton-artists.vercel.app/
 
 ## Quick Start
 
-1. Install dependencies:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/horvathdavid212/hungaroton-artists.git
+```
+
+2. Move into the project directory:
+
+```bash
+cd hungaroton-artists
+```
+
+3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Create a `.env` file and set the API URL:
+4. Create a `.env` file and set the API URL:
 
 ```env
 ARTISTS_API_URL=<artists-api-url>
@@ -18,13 +30,13 @@ ARTISTS_API_URL=<artists-api-url>
 
 You can also copy `.env.example` and edit it.
 
-3. Start the development server:
+5. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Open:
+6. Open:
 
 ```text
 http://localhost:3000
