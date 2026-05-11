@@ -89,6 +89,39 @@ test('resets all filters back to the first page', async ({ page }) => {
   await expect(page.locator('article')).toHaveCount(50)
 })
 
+test('keeps the sticky filters collapsed when hiding them just after they stick', async ({ page }) => {
+  await page.goto('/en?page=1')
+
+  const filtersTop = await page
+    .locator('section')
+    .first()
+    .evaluate((element) => element.getBoundingClientRect().top + window.scrollY)
+
+  await page.evaluate((scrollTop) => window.scrollTo(0, scrollTop + 1), filtersTop)
+  await page.waitForTimeout(100)
+
+  const hideFiltersButton = page.getByRole('button', { name: 'Hide filters' })
+
+  await expect(hideFiltersButton).toBeVisible()
+
+  await hideFiltersButton.click()
+
+  const showFiltersButton = page.getByRole('button', { name: 'Show filters' })
+
+  await expect(showFiltersButton).toBeVisible()
+  await expect(page.locator('#artist-filter-content')).not.toBeVisible()
+
+  await page.waitForTimeout(500)
+
+  await expect(showFiltersButton).toBeVisible()
+  await expect(page.locator('#artist-filter-content')).not.toBeVisible()
+
+  await page.evaluate(() => window.scrollTo(0, 0))
+
+  await expect(showFiltersButton).toBeHidden()
+  await expect(page.locator('#artist-filter-content')).toBeVisible()
+})
+
 test('syncs pagination to the URL while preserving filters', async ({ page }) => {
   await page.goto('/en?page=1&type=is_primary')
 

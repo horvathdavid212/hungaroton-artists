@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ArtistFilterSummary } from '@/features/artists/components/filters/ArtistFilterSummary';
 import { ArtistFiltersContentLayout } from '@/features/artists/components/filters/ArtistFiltersContentLayout';
 import { ArtistFiltersToggleButton } from '@/features/artists/components/filters/ArtistFiltersToggleButton';
@@ -26,6 +26,8 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
   const stickyBoundaryRef = useRef<HTMLDivElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
   const isStuckRef = useRef(false);
+  const isPreservingStickyCollapseRef = useRef(false);
+  const stickyStartScrollTopRef = useRef(0);
   const [isStuck, setIsStuck] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const t = useTranslations('artistSearch');
@@ -33,6 +35,41 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
   const isFilterContentVisible = !isStuck || isExpanded;
   const shouldShowFilterSummary = isStuck && !isExpanded;
   const toggleButtonLabel = isExpanded ? t('hideFiltersButton') : t('showFiltersButton');
+
+  // Closing the sticky panel changes its height; keep the scroll position past the sentinel during that transition.
+  const preserveStickyScrollPosition = useCallback(() => {
+    const stickyStartScrollTop = stickyStartScrollTopRef.current;
+
+    if (!stickyStartScrollTop) {
+      return;
+    }
+
+    const nextScrollTop = stickyStartScrollTop + 1;
+
+    if (window.scrollY < nextScrollTop) {
+      window.scrollTo({ top: nextScrollTop });
+    }
+  }, []);
+
+  const handleFilterContentExit = () => {
+    const stickyBoundaryElement = stickyBoundaryRef.current;
+
+    if (!stickyBoundaryElement || !isStuckRef.current) {
+      return;
+    }
+
+    stickyStartScrollTopRef.current = stickyBoundaryElement.getBoundingClientRect().top + window.scrollY;
+    isPreservingStickyCollapseRef.current = true;
+  };
+
+  const handleFilterContentExited = () => {
+    if (!isPreservingStickyCollapseRef.current) {
+      return;
+    }
+
+    preserveStickyScrollPosition();
+    isPreservingStickyCollapseRef.current = false;
+  };
 
   // Tracks when the filter panel reaches the top of the viewport so it can switch into sticky mode.
   // The scroll/resize listener is throttled with requestAnimationFrame to avoid updating state too often.
@@ -49,6 +86,11 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
       }
 
       const isFilterStuck = stickyBoundaryElement.getBoundingClientRect().top <= 0;
+
+      if (!isFilterStuck && isPreservingStickyCollapseRef.current) {
+        preserveStickyScrollPosition();
+        return;
+      }
 
       if (isFilterStuck !== isStuckRef.current) {
         isStuckRef.current = isFilterStuck;
@@ -80,7 +122,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
       window.removeEventListener('resize', requestStickyStateUpdate);
       window.removeEventListener('scroll', requestStickyStateUpdate);
     };
-  }, []);
+  }, [preserveStickyScrollPosition]);
 
   return (
     <>
@@ -132,7 +174,7 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
                 }}
               />
             ) : null}
-            <Collapse id={FILTER_CONTENT_ID} in={isFilterContentVisible} timeout="auto">
+            <Collapse id={FILTER_CONTENT_ID} in={isFilterContentVisible} onExit={handleFilterContentExit} onExited={handleFilterContentExited} timeout="auto">
               <ArtistFiltersContentLayout
                 isStuck={isStuck}
                 letterFilter={<LetterFilter query={query} />}
