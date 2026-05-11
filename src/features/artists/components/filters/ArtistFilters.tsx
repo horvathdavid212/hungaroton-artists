@@ -162,12 +162,11 @@ export const ArtistFilters = ({ query }: ArtistFiltersProps) => {
             width: isStuck ? '100vw' : '100%'
           }}
         >
-          <Stack spacing={shouldShowFilterSummary ? 2 : 0} sx={{ flexGrow: 1, maxWidth: 'lg' }}>
+          <Stack sx={{ flexGrow: 1, maxWidth: 'lg' }}>
             {shouldShowFilterSummary ? (
               <ArtistFilterSummary
                 query={query}
                 sx={{
-                  mx: isStuck ? 'auto' : 0,
                   maxWidth: 'lg',
                   px: { xs: 2, sm: 3 },
                   transition: 'padding 150ms ease'
